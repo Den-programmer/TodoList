@@ -21,3 +21,6 @@ button {
 .d-flex {
   display:flex;
 }
+.App {
+  margin:0 auto;
+}

@@ -14,7 +14,7 @@ let store = {
             ]
         }
     },
-    dispatch() {
+    _dispatch() {
 
     }
 }

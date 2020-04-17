@@ -4,11 +4,8 @@ import classes from './todo.module.css';
 const Todo = () => {
     return(
         <div className={classes.todo}>
-            <div>
-
-            </div>
-            <div>
-
+            <div className={classes.tasks}>
+                
             </div>
         </div>
     );
