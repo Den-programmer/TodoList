@@ -1,15 +1,15 @@
 import React from 'react';
-import store from './BLL/redux'
+import Todo from './components/todo/todo';
 
 class App extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.store._state = state;
+    props.store = this.store;
   }
   render() {
     return (
       <div className="App">
-        Тут какая-то разметка!
+        <Todo store={this.store}/>
       </div>
     );
   }
