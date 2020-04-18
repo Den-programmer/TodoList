@@ -1,16 +1,21 @@
 import Todo from './todo';
-import { doneTaskAC, deleteTaskAC, addTaskAC } from '../../BLL/reducers/reducerTodo';
+import { doneTaskAC, deleteTaskAC, addTaskAC, onTaskInputChangeAC } from '../../BLL/reducers/reducerTodo';
 import { connect } from 'react-redux';
 
 let mapStatetoProps = (state) => {
+    console.log(state);
     return {
         tasks: state.todolist.tasks,
+        newTaskValue: state.todolist.newTaskValue,
     }
 } 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addTask:() => {
-            dispatch(addTaskAC());
+        addTask:(taskTitle) => {
+            dispatch(addTaskAC(taskTitle));
+        },
+        onTaskInputChange:(newTaskValue) => {
+            dispatch(onTaskInputChangeAC(newTaskValue));
         },
         doneTask:() => {
             dispatch(doneTaskAC());

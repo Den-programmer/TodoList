@@ -1,6 +1,7 @@
 let ADD_TASK = 'ADD-TASK';
 let DONE_TASK = 'DONE-TASK';
 let DELETE_TASK = 'DELETE-TASK';
+let TASK_VALUE_CHANGE = 'TASK-VALUE-CHANGE';
 
 let todolist = {
     tasks: [
@@ -19,7 +20,8 @@ let todolist = {
             title: 'Выучить стих!',
             done: false,
         },
-    ]
+    ],
+    newTaskValue : ""
 }
 
 let reducerTodo = (state = todolist, action) => {
@@ -28,11 +30,15 @@ let reducerTodo = (state = todolist, action) => {
 
     if (action.type === ADD_TASK) {
         let newTask = {
-            id: 4,
-            title: 'title',
+            id: stateCopy.tasks.length + 1,
+            title: action.taskTitle,
             done: false,
         }
-        stateCopy.todolist.tasks.push(newTask);
+        stateCopy.tasks.push(newTask);
+
+        return stateCopy;
+    } else if (action.type === TASK_VALUE_CHANGE) {
+        stateCopy.newTaskValue = action.newTaskValue;
 
         return stateCopy;
     } else if (action.type === DONE_TASK) {
@@ -46,22 +52,22 @@ let reducerTodo = (state = todolist, action) => {
                 return true;
             }
         });
-
-
-        console.log(stateCopy);
         return stateCopy;
     }
     return state;
 }
 
-export let addTaskAC = () => {
-    return { type: ADD_TASK, }
+export let addTaskAC = (taskTitle) => {
+    return { type: ADD_TASK, taskTitle:taskTitle}
 }
 export let doneTaskAC = () => {
     return { type: DONE_TASK, }
 }
 export let deleteTaskAC = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }
+}
+export let onTaskInputChangeAC = (newTaskValue) => {
+    return { type: TASK_VALUE_CHANGE, newTaskValue }
 }
 
 export default reducerTodo;

@@ -11,7 +11,8 @@ const Todo = (props) => {
             <Tasks tasks={props.tasks} 
             doneTask={props.doneTask} 
             deleteTask={props.deleteTask}/>
-            <AddTask addTask={props.addTask} />
+            <AddTask newTaskValue={props.newTaskValue} 
+            onTaskInputChange={props.onTaskInputChange} addTask={props.addTask} />
         </div>
     );
 }
