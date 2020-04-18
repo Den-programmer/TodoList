@@ -8,7 +8,7 @@ const Todo = (props) => {
     return (
         <div className={classes.todo}>
             <HeaderTodo />
-            <Tasks store={props.store}/>
+            <Tasks tasks={props.tasks} deleteTask={props.deleteTask}/>
             <AddTask />
         </div>
     );

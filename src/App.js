@@ -1,5 +1,5 @@
 import React from 'react';
-import Todo from './components/todo/todo';
+import TodoContainer from './components/todo/todoContainer';
 
 class App extends React.Component {
   constructor() {
@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Todo store={this.props.store}/>
+        <TodoContainer store={this.props.store}/>
       </div>
     );
   }
