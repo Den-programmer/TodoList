@@ -6,10 +6,9 @@ class App extends React.Component {
     super();
   }
   render() {
-    let state = this.props.store._state;
     return (
       <div className="App">
-        <Todo state={state}/>
+        <Todo store={this.props.store}/>
       </div>
     );
   }

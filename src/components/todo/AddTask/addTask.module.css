@@ -1,0 +1,30 @@
+.container {
+    display:flex;
+    align-items:center;
+    width: 90%;
+    margin: 0 auto;
+    justify-content:space-between;
+}
+.input {
+    width: 480px;
+    padding:10px;
+}
+.input:focus {
+    border:1px solid #007BFF;
+}
+.btn_addTask {
+    display:flex;
+    justify-content:right;
+    margin-right: 35px;
+}
+.btn_addTask button {
+    color:#FFF;
+    background-color: #28A745;
+    border:1px solid #28A745;
+    padding: 10px 20px;
+    border-radius:5px;
+}
+.btn_addTask button:hover {
+    transition:all .5s ease;
+    color:#8D00A1;
+}

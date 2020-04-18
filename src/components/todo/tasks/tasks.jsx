@@ -6,6 +6,8 @@ const Tasks = (props) => {
     return (
         <div className={classes.tasks}>
             <Task />
+            <Task />
+            <Task />
         </div>
     );
 }
