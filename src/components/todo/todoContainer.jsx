@@ -1,6 +1,6 @@
 import React from 'react';
 import Todo from './todo';
-import { doneTaskAC, deleteTaskAC } from '../../BLL/state';
+import { doneTaskAC, deleteTaskAC } from '../../BLL/reducers/reducerTodo';
 
 const TodoContainer = (props) => {
     let tasks = props.store._state.todolist.tasks;

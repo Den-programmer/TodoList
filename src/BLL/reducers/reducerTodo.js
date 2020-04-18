@@ -25,9 +25,9 @@ let initialState = {
 }
 
 let reducerTodo = (state = initialState, action) => {
-    let stateCopy = { ...this._state }
-    stateCopy.todolist = { ...this._state.todolist }
-    stateCopy.todolist.tasks = [...this._state.todolist.tasks];
+    let stateCopy = { ...state }
+    stateCopy.todolist = { ...state.todolist }
+    stateCopy.todolist.tasks = [...state.todolist.tasks];
 
     if (action.type === ADD_TASK) {
         let newTask = {

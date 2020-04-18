@@ -5,9 +5,8 @@ let reducers = combineReducers({
     todolist: reducerTodo,
 });
 
-window.store = store;
-
 let store = createStore(reducers);
 
+window.store = store;
 
 export default store;
