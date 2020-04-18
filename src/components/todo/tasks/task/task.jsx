@@ -6,7 +6,7 @@ import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 const Task = (props) => {
 
     let deleteTask = (e) => {
-        let currentId = e.currentTarget.parentNode.parentNode.getAttribute("Id");
+        let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
         props.deleteTask(currentId);
     }
 
