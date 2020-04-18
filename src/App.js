@@ -2,14 +2,14 @@ import React from 'react';
 import Todo from './components/todo/todo';
 
 class App extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
-    props.store = this.store;
   }
   render() {
+    let state = this.props.store._state;
     return (
       <div className="App">
-        <Todo store={this.store}/>
+        <Todo state={state}/>
       </div>
     );
   }

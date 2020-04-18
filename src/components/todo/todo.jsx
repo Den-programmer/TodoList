@@ -4,7 +4,7 @@ import Tasks from './tasks/tasks';
 
 const Todo = (props) => {
 
-    console.log(props.store);
+    console.log(props);
 
     return (
         <div className={classes.todo}>
