@@ -2,32 +2,29 @@ let ADD_TASK = 'ADD-TASK';
 let DONE_TASK = 'DONE-TASK';
 let DELETE_TASK = 'DELETE-TASK';
 
-let initialState = {
-    todolist: {
-        tasks: [
-            {
-                id: 1,
-                title: 'Повторить неповни речення!',
-                done: false,
-            },
-            {
-                id: 2,
-                title: 'Выучить второй стих!',
-                done: false,
-            },
-            {
-                id: 3,
-                title: 'Выучить стих!',
-                done: false,
-            },
-        ]
-    }
+let todolist = {
+    tasks: [
+        {
+            id: 1,
+            title: 'Повторить неповни речення!',
+            done: false,
+        },
+        {
+            id: 2,
+            title: 'Выучить второй стих!',
+            done: false,
+        },
+        {
+            id: 3,
+            title: 'Выучить стих!',
+            done: false,
+        },
+    ]
 }
 
-let reducerTodo = (state = initialState, action) => {
+let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
-    stateCopy.todolist = { ...state.todolist }
-    stateCopy.todolist.tasks = [...state.todolist.tasks];
+    stateCopy.tasks = [...state.tasks];
 
     if (action.type === ADD_TASK) {
         let newTask = {
@@ -39,12 +36,12 @@ let reducerTodo = (state = initialState, action) => {
 
         return stateCopy;
     } else if (action.type === DONE_TASK) {
-        // stateCopy.todolist.tasks
+        
 
 
         return stateCopy;
     } else if (action.type === DELETE_TASK) {
-        stateCopy.todolist.tasks = stateCopy.todolist.tasks.filter(t => {
+        stateCopy.tasks = stateCopy.tasks.filter(t => {
             if (t.id !== action.taskID) {
                 return true;
             }
@@ -54,6 +51,7 @@ let reducerTodo = (state = initialState, action) => {
         console.log(stateCopy);
         return stateCopy;
     }
+    return state;
 }
 
 export let addTaskAC = () => {
