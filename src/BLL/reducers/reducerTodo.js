@@ -27,6 +27,9 @@ let todolist = {
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
+    let tasks = stateCopy.tasks.map(task => {
+        return {...task}
+    });
 
     if (action.type === ADD_TASK) {
         let newTask = {
@@ -35,15 +38,31 @@ let reducerTodo = (state = todolist, action) => {
             done: false,
         }
         stateCopy.tasks.push(newTask);
-
         return stateCopy;
     } else if (action.type === TASK_VALUE_CHANGE) {
         stateCopy.newTaskValue = action.newTaskValue;
-
         return stateCopy;
     } else if (action.type === DONE_TASK) {
-        
+        let currentTask = stateCopy.tasks.filter(task => {
+            if (task.id == action.taskId) {
+                return true;
+            }
+        });
+        currentTask = currentTask.find(item => item);
 
+        tasks.forEach(task => {
+            if(task.id == action.taskId && task.done == false) {
+                task.done = true;
+                let title = action.titleTask;
+                title.style.textDecoration = 'line-through';
+            } else if(task.id == action.taskId && task.done == true) {
+                task.done = false;
+                let title = action.titleTask;
+                title.style.textDecoration = 'none';
+            }
+        });
+        
+        
 
         return stateCopy;
     } else if (action.type === DELETE_TASK) {
@@ -60,8 +79,8 @@ let reducerTodo = (state = todolist, action) => {
 export let addTaskAC = (taskTitle) => {
     return { type: ADD_TASK, taskTitle:taskTitle}
 }
-export let doneTaskAC = () => {
-    return { type: DONE_TASK, }
+export let doneTaskAC = (taskId, titleTask) => {
+    return { type: DONE_TASK, taskId: taskId, titleTask: titleTask }
 }
 export let deleteTaskAC = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }

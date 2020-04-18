@@ -3,7 +3,6 @@ import { doneTaskAC, deleteTaskAC, addTaskAC, onTaskInputChangeAC } from '../../
 import { connect } from 'react-redux';
 
 let mapStatetoProps = (state) => {
-    console.log(state);
     return {
         tasks: state.todolist.tasks,
         newTaskValue: state.todolist.newTaskValue,
@@ -17,8 +16,8 @@ let mapDispatchToProps = (dispatch) => {
         onTaskInputChange:(newTaskValue) => {
             dispatch(onTaskInputChangeAC(newTaskValue));
         },
-        doneTask:() => {
-            dispatch(doneTaskAC());
+        doneTask:(taskId, titleTask) => {
+            dispatch(doneTaskAC(taskId, titleTask));
         },
         deleteTask:(taskID) => {
             dispatch(deleteTaskAC(taskID));

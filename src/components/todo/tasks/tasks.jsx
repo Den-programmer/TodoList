@@ -4,7 +4,7 @@ import Task from './task/task';
 
 const Tasks = (props) => {
     let tasks = props.tasks.map((task) => {
-        return <Task key={task.id} id={task.id} title={task.title} done={task.done} deleteTask={props.deleteTask}/>
+        return <Task key={task.id} id={task.id} title={task.title} done={task.done} doneTask={props.doneTask} deleteTask={props.deleteTask}/>
     });
 
     return (

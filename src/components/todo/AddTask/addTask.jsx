@@ -2,8 +2,7 @@ import React, { createRef } from 'react';
 import classes from './addTask.module.css';
 
 const AddTask = (props) => {
-    let additionTaskInput = createRef();
-    console.log(props.newTaskValue);
+    let additionTaskInput = React.createRef();
 
     let addTask = () => {
         let taskTitle = additionTaskInput.current.value;
