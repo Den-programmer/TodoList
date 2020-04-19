@@ -21,14 +21,14 @@ let todolist = {
             done: false,
         },
     ],
-    newTaskValue : ""
+    newTaskValue: ""
 }
 
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
     let tasks = stateCopy.tasks.map(task => {
-        return {...task}
+        return { ...task }
     });
 
     if (action.type === ADD_TASK) {
@@ -43,26 +43,16 @@ let reducerTodo = (state = todolist, action) => {
         stateCopy.newTaskValue = action.newTaskValue;
         return stateCopy;
     } else if (action.type === DONE_TASK) {
-        let currentTask = stateCopy.tasks.filter(task => {
-            if (task.id == action.taskId) {
-                return true;
-            }
-        });
-        currentTask = currentTask.find(item => item);
-
         tasks.forEach(task => {
-            if(task.id == action.taskId && task.done == false) {
-                task.done = true;
-                let title = action.titleTask;
-                title.style.textDecoration = 'line-through';
-            } else if(task.id == action.taskId && task.done == true) {
-                task.done = false;
-                let title = action.titleTask;
-                title.style.textDecoration = 'none';
-            }
+            if (task.id == action.taskId) {
+                if (task.done == false) {
+                    task.done = true;
+                } else {
+                    task.done = false;
+                }
+            } 
         });
-        
-        
+        stateCopy.tasks = tasks;
 
         return stateCopy;
     } else if (action.type === DELETE_TASK) {
@@ -77,10 +67,10 @@ let reducerTodo = (state = todolist, action) => {
 }
 
 export let addTaskAC = (taskTitle) => {
-    return { type: ADD_TASK, taskTitle:taskTitle}
+    return { type: ADD_TASK, taskTitle: taskTitle }
 }
-export let doneTaskAC = (taskId, titleTask) => {
-    return { type: DONE_TASK, taskId: taskId, titleTask: titleTask }
+export let doneTaskAC = (taskId) => {
+    return { type: DONE_TASK, taskId: taskId, }
 }
 export let deleteTaskAC = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }

@@ -4,12 +4,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 
 const Task = (props) => {   
-    let title = React.createRef();
-
     let doneTask = (e) => {
-        let titleTask = title.current;
         let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        props.doneTask(currentId, titleTask);
+        props.doneTask(currentId);
     }
 
     let deleteTask = (e) => {
@@ -20,7 +17,7 @@ const Task = (props) => {
     return (
         <div id={props.id} className={classes.task}>
             <div className={classes.title}>
-                <h6 ref={title}>{props.title}</h6>
+                {props.done ? <h6 className={classes.tdLineThrough}>{props.title}</h6> : <h6 className={classes.tdNone}>{props.title}</h6>}
             </div>
             <div className={classes.DefaultButtons}>
                 <div onClick={ doneTask } className={classes.btn_done}>

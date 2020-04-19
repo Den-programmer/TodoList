@@ -16,8 +16,8 @@ let mapDispatchToProps = (dispatch) => {
         onTaskInputChange:(newTaskValue) => {
             dispatch(onTaskInputChangeAC(newTaskValue));
         },
-        doneTask:(taskId, titleTask) => {
-            dispatch(doneTaskAC(taskId, titleTask));
+        doneTask:(taskId) => {
+            dispatch(doneTaskAC(taskId));
         },
         deleteTask:(taskID) => {
             dispatch(deleteTaskAC(taskID));
