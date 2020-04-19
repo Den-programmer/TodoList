@@ -4,6 +4,12 @@
     width: 90%;
     margin: 0 auto;
     justify-content:space-between;
+    padding-top: 20px;
+}
+.containerHidden {
+    display:none;
+    width: 50%;
+    margin: 0 auto;
 }
 .input {
     width: 480px;
@@ -15,6 +21,7 @@
 .btn_addTask {
     display:flex;
     justify-content:right;
+    margin:10px;
     margin-right: 35px;
 }
 .btn_addTask button {
@@ -27,4 +34,7 @@
 .btn_addTask button:hover {
     transition:all .5s ease;
     color:#8D00A1;
+}
+.warningRedText {
+    color:red;
 }

@@ -3,10 +3,16 @@ import classes from './addTask.module.css';
 
 const AddTask = (props) => {
     let additionTaskInput = React.createRef();
+    let HiddenContainer = React.createRef();
 
     let addTask = () => {
         let taskTitle = additionTaskInput.current.value;
-        props.addTask(taskTitle);
+        if (taskTitle == '') {
+            HiddenContainer.current.style.display = 'block';
+        } else {
+            props.addTask(taskTitle);
+            HiddenContainer.current.style.display = 'none';
+        }
     } 
     let onTaskInputChange = () => {
         let newTaskValue = additionTaskInput.current.value;
@@ -21,6 +27,11 @@ const AddTask = (props) => {
                 </div>
                 <div>
                     <input onChange={ onTaskInputChange } ref={additionTaskInput} className={classes.input} placeholder=" What do you need to do? " type="text" value={props.newTaskValue}/>
+                </div>
+            </div>
+            <div ref={HiddenContainer} className={classes.containerHidden}>
+                <div className={classes.warningRedText}>
+                    <p>You entered nothing!</p>
                 </div>
             </div>
             <div className={classes.btn_addTask}>
