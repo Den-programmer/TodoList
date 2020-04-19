@@ -26,7 +26,7 @@ const AddTask = (props) => {
                     <h4>Your Task:</h4>
                 </div>
                 <div>
-                    <input onChange={ onTaskInputChange } ref={additionTaskInput} className={classes.input} placeholder=" What do you need to do? " type="text" value={props.newTaskValue}/>
+                    <input title="Enter your task!" onChange={ onTaskInputChange } ref={additionTaskInput} className={classes.input} placeholder=" What do you need to do? " type="text" value={props.newTaskValue}/>
                 </div>
             </div>
             <div ref={HiddenContainer} className={classes.containerHidden}>
@@ -35,7 +35,7 @@ const AddTask = (props) => {
                 </div>
             </div>
             <div className={classes.btn_addTask}>
-                <button onClick={ addTask }>
+                <button title="Add new item!" onClick={ addTask }>
                     Add!
                 </button>
             </div>

@@ -20,10 +20,10 @@ const Task = (props) => {
                 {props.done ? <h6 className={classes.tdLineThrough}>{props.title}</h6> : <h6 className={classes.tdNone}>{props.title}</h6>}
             </div>
             <div className={classes.DefaultButtons}>
-                <div onClick={ doneTask } className={classes.btn_done}>
+                <div title="Mark as Done!" onClick={ doneTask } className={classes.btn_done}>
                     <FontAwesomeIcon className={classes.imgDone} icon={faCheckSquare}  />       
                 </div>
-                <div onClick={ deleteTask } className={classes.btn_close}>
+                <div title="Delete!" onClick={ deleteTask } className={classes.btn_close}>
                     <FontAwesomeIcon className={classes.imgClose} icon={faWindowClose} />
                 </div>
             </div>

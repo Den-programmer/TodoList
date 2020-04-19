@@ -26,13 +26,14 @@
 }
 .btn_addTask button {
     color:#FFF;
-    background-color: #28A745;
+    background: linear-gradient(to right,#006C0A, #28A745);
     border:1px solid #28A745;
     padding: 10px 20px;
     border-radius:5px;
 }
 .btn_addTask button:hover {
     transition:all .5s ease;
+    background: linear-gradient(to right,#28A745, #006C0A);
     color:#8D00A1;
 }
 .warningRedText {

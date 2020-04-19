@@ -6,10 +6,10 @@ const HeaderTodo = (props) => {
         <header>
             <div className={classes.container}>
                 <div className={classes.title}>
-                    <h1>TodoList</h1>
+                    <h1 title="Best wishes your TodoList!">TodoList</h1>
                 </div>
                 <div className={classes.search}>
-                    <input className={classes.input} type="text" placeholder="Search..."/>
+                    <input title="Search!" className={classes.input} type="text" placeholder="Search..."/>
                 </div>
             </div>
         </header>
