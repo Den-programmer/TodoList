@@ -1,5 +1,5 @@
 import Todo from './todo';
-import { doneTaskAC, deleteTaskAC, addTaskAC, onTaskInputChangeAC } from '../../BLL/reducers/reducerTodo';
+import { doneTask, deleteTask, addTask, onTaskInputChange, deleteAllTasks } from '../../BLL/reducers/reducerTodo';
 import { connect } from 'react-redux';
 
 let mapStatetoProps = (state) => {
@@ -8,24 +8,8 @@ let mapStatetoProps = (state) => {
         newTaskValue: state.todolist.newTaskValue,
     }
 } 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addTask:(taskTitle) => {
-            dispatch(addTaskAC(taskTitle));
-        },
-        onTaskInputChange:(newTaskValue) => {
-            dispatch(onTaskInputChangeAC(newTaskValue));
-        },
-        doneTask:(taskId) => {
-            dispatch(doneTaskAC(taskId));
-        },
-        deleteTask:(taskID) => {
-            dispatch(deleteTaskAC(taskID));
-        },
-    }
-}
 
-const TodoContainer = connect(mapStatetoProps, mapDispatchToProps)(Todo);
+const TodoContainer = connect(mapStatetoProps, { addTask, onTaskInputChange, doneTask, deleteTask, deleteAllTasks })(Todo);
 
 
 export default TodoContainer;

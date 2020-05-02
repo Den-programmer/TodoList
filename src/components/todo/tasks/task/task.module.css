@@ -32,10 +32,10 @@
 }
 .imgDone {
     color:green;
-    font-size: 25px;
+    font-size: 25px; 
 } 
 .imgClose {
     background-color:#FFF;
     color:red;
-    font-size: 25px;
+    font-size: 25px; 
 }

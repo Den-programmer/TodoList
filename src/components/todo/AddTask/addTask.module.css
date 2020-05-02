@@ -18,11 +18,15 @@
 .input:focus {
     border:1px solid #007BFF;
 }
+.managePanel {
+    display: flex;
+    width:620px;
+    justify-content: space-between;
+    align-items:center;
+    margin: 0 auto;
+}
 .btn_addTask {
-    display:flex;
-    justify-content:right;
     margin:10px;
-    margin-right: 35px;
 }
 .btn_addTask button {
     color:#FFF;
