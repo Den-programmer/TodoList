@@ -4,6 +4,7 @@ const DELETE_TASK = 'DELETE-TASK';
 const TASK_VALUE_CHANGE = 'TASK-VALUE-CHANGE';
 const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS';
 const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
+const EDIT_TASKS = 'EDIT_TASKS';
 
 let todolist = {
     tasks: [
@@ -27,66 +28,68 @@ let todolist = {
     newTaskValue: "",
     undo: {
         display: 'none',
-    }
+    },
 }
 
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
     stateCopy.cashTasks = [...state.cashTasks];
-    stateCopy.undo = {...state.undo};
+    stateCopy.undo = { ...state.undo };
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
     });
 
-    if (action.type === ADD_TASK) {
-        let newTask = {
-            id: stateCopy.tasks.length + 1,
-            title: action.taskTitle,
-            done: false,
-        }
-        stateCopy.tasks.push(newTask);
-        stateCopy.newTaskValue = '';
-        stateCopy.undo.display = 'none';
-        return stateCopy;
-    } else if (action.type === TASK_VALUE_CHANGE) {
-        stateCopy.newTaskValue = action.newTaskValue;
-        return stateCopy;
-    } else if (action.type === DONE_TASK) {
-        tasks.forEach(task => {
-            if (task.id == action.taskId) {
-                if (task.done == false) {
-                    task.done = true;
-                } else {
-                    task.done = false;
-                }
-            } 
-        });
-        stateCopy.tasks = tasks;
-
-        return stateCopy;
-    } else if (action.type === DELETE_TASK) {
-        stateCopy.tasks = stateCopy.tasks.filter(t => {
-            if (t.id !== action.taskID) {
-                return true;
+    switch (action.type) {
+        case ADD_TASK:
+            let newTask = {
+                id: stateCopy.tasks.length + 1,
+                title: action.taskTitle,
+                done: false,
             }
-        });
-        return stateCopy;
-    } else if (action.type === DELETE_ALL_TASKS) {
-        if (stateCopy.tasks.length > 0) {
-            stateCopy.cashTasks = stateCopy.tasks;
-        }
-        stateCopy.tasks = [];
-        stateCopy.undo.display = 'block';
-        
-        return stateCopy;
-    } else if (action.type === RETURN_DELETED_TASKS) {
-        stateCopy.tasks = stateCopy.cashTasks;
-        stateCopy.undo.display = 'none';
+            stateCopy.tasks.push(newTask);
+            stateCopy.newTaskValue = '';
+            stateCopy.undo.display = 'none';
+            return stateCopy;
+        case TASK_VALUE_CHANGE:
+            stateCopy.newTaskValue = action.newTaskValue;
+            return stateCopy;
+        case DONE_TASK:
+            tasks.forEach(task => {
+                if (task.id == action.taskId) {
+                    if (task.done == false) {
+                        task.done = true;
+                    } else {
+                        task.done = false;
+                    }
+                }
+            });
+            stateCopy.tasks = tasks;
 
-        return stateCopy;
+            return stateCopy;
+        case DELETE_TASK:
+            stateCopy.tasks = stateCopy.tasks.filter(t => {
+                if (t.id !== action.taskID) {
+                    return true;
+                }
+            });
+            return stateCopy;
+        case DELETE_ALL_TASKS:
+            if (stateCopy.tasks.length > 0) {
+                stateCopy.cashTasks = stateCopy.tasks;
+            }
+            stateCopy.tasks = [];
+            stateCopy.undo.display = 'block';
+
+            return stateCopy;
+        case RETURN_DELETED_TASKS:
+            stateCopy.tasks = stateCopy.cashTasks;
+            stateCopy.undo.display = 'none';
+
+            return stateCopy;
+        default:
+            return state;
     }
-    return state;
 }
 
 export let addTask = (taskTitle) => {
@@ -106,6 +109,9 @@ export const deleteAllTasks = () => {
 }
 export const returnDeletedTasks = () => {
     return { type: RETURN_DELETED_TASKS }
+}
+export const editTasks = (taskId) => {
+    return { type: EDIT_TASKS, taskId }
 }
 
 export default reducerTodo;
