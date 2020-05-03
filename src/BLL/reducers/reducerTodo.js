@@ -3,6 +3,7 @@ const DONE_TASK = 'DONE-TASK';
 const DELETE_TASK = 'DELETE-TASK';
 const TASK_VALUE_CHANGE = 'TASK-VALUE-CHANGE';
 const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS';
+const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 
 let todolist = {
     tasks: [
@@ -22,12 +23,18 @@ let todolist = {
             done: false,
         },
     ],
-    newTaskValue: ""
+    cashTasks: [],
+    newTaskValue: "",
+    undo: {
+        display: 'none',
+    }
 }
 
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
+    stateCopy.cashTasks = [...state.cashTasks];
+    stateCopy.undo = {...state.undo};
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
     });
@@ -65,8 +72,17 @@ let reducerTodo = (state = todolist, action) => {
         });
         return stateCopy;
     } else if (action.type === DELETE_ALL_TASKS) {
+        if (stateCopy.tasks.length > 0) {
+            stateCopy.cashTasks = stateCopy.tasks;
+        }
         stateCopy.tasks = [];
+        stateCopy.undo.display = 'block';
         
+        return stateCopy;
+    } else if (action.type === RETURN_DELETED_TASKS) {
+        stateCopy.tasks = stateCopy.cashTasks;
+        stateCopy.undo.display = 'none';
+
         return stateCopy;
     }
     return state;
@@ -86,6 +102,9 @@ export let onTaskInputChange = (newTaskValue) => {
 }
 export const deleteAllTasks = () => {
     return { type: DELETE_ALL_TASKS }
+}
+export const returnDeletedTasks = () => {
+    return { type: RETURN_DELETED_TASKS }
 }
 
 export default reducerTodo;

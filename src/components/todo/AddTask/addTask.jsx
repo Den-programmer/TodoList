@@ -42,7 +42,7 @@ const AddTask = (props) => {
                 </div>
             </div>
             <div className={classes.managePanel}>
-                <DeleteAllTasks deleteAllTasks={props.deleteAllTasks}/>
+                <DeleteAllTasks undo={props.undo} returnDeletedTasks={props.returnDeletedTasks} deleteAllTasks={props.deleteAllTasks}/>
                 <div className={classes.btn_addTask}>
                     <button title="Add new item!" onClick={addTask}>
                         Add!
