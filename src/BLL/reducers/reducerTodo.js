@@ -47,6 +47,7 @@ let reducerTodo = (state = todolist, action) => {
         }
         stateCopy.tasks.push(newTask);
         stateCopy.newTaskValue = '';
+        stateCopy.undo.display = 'none';
         return stateCopy;
     } else if (action.type === TASK_VALUE_CHANGE) {
         stateCopy.newTaskValue = action.newTaskValue;

@@ -16,10 +16,10 @@ const DeleteAllTasks = (props) => {
     return (
         <div className={classes.deleteAllTasks}>
             <div>
-                <FontAwesomeIcon onClick={deleteAllTasks} className={classes.trashCan} icon={faTrashAlt} />
+                <FontAwesomeIcon title="Remove all tasks!" onClick={deleteAllTasks} className={classes.trashCan} icon={faTrashAlt} />
             </div>
             <div style={ style }>
-                <FontAwesomeIcon onClick={returnPrevTasks} className={classes.undo} icon={faUndo} />
+                <FontAwesomeIcon title="Restore deleted tasks!" onClick={returnPrevTasks} className={classes.undo} icon={faUndo} />
             </div>
         </div>
     );
