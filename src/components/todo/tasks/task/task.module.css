@@ -17,7 +17,20 @@
 .tdLineThrough {
     text-decoration:line-through;
 }
-
+.editing {
+    box-sizing: border-box;
+    width: 500px;
+    padding: 10px;
+    border:none;
+}
+.editing {
+    border:none;
+    font-size: 16px;
+}
+.editing:focus {
+    outline:none;
+    border-bottom: 1px solid #8FB9FE;
+}
 .DefaultButtons {
     display:flex;
 } 

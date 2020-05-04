@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 
 const Task = (props) => {   
+    let editingInput = React.createRef(); 
+
     let doneTask = (e) => {
         let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
         props.doneTask(currentId);
@@ -14,10 +16,37 @@ const Task = (props) => {
         props.deleteTask(currentId);
     }
 
+    let editTask = (event) => {
+        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
+        props.editTasks(currentId);
+    }
+
+    let finishEditTask = (event) => {
+        let taskValue = editingInput.current.value;
+        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
+        props.finishEditTasks(currentId, taskValue);
+    }
+
+    let onEditInputChange = (event) => {
+        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
+        let taskValue = editingInput.current.value;
+        props.onEditInputChange(taskValue, currentId);
+    }
+
     return (
         <div id={props.id} className={classes.task}>
             <div className={classes.title}>
-                {props.done ? <h6 className={classes.tdLineThrough}>{props.title}</h6> : <h6 className={classes.tdNone}>{props.title}</h6>}
+            {props.isEdit ? <input autoFocus={true} 
+                                   onChange={ onEditInputChange } 
+                                   ref={ editingInput } 
+                                   title="Edit your task!" 
+                                   onBlur={ finishEditTask } 
+                                   value={props.title} 
+                                   className={classes.editing} 
+                                   placeholder="Enter something..."/> 
+                                   : props.done ? 
+                                   <h6 className={classes.tdLineThrough}>{props.title}</h6> 
+                                   : <h6 title="Click to edit!" onClick={ editTask } className={classes.tdNone}>{props.title}</h6>}
             </div>
             <div className={classes.DefaultButtons}>
                 <div title="Mark as Done!" onClick={ doneTask } className={classes.btn_done}>

@@ -8,10 +8,13 @@ const Todo = (props) => {
     return (
         <div className={classes.todo}>
             <HeaderTodo />
-            <Tasks tasks={props.tasks} 
+            <Tasks onEditInputChange={props.onEditInputChange} editTasks={props.editTasks} 
+            finishEditTasks={props.finishEditTasks} 
+            tasks={props.tasks} 
+            errorEditText={props.errorEditText}
             doneTask={props.doneTask} 
             deleteTask={props.deleteTask}/>
-            <AddTask editTasks={props.editTasks} undo={props.undo}
+            <AddTask undo={props.undo}
             returnDeletedTasks={props.returnDeletedTasks}
             deleteAllTasks={props.deleteAllTasks} 
             newTaskValue={props.newTaskValue} 

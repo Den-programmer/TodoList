@@ -5,6 +5,8 @@ const TASK_VALUE_CHANGE = 'TASK-VALUE-CHANGE';
 const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS';
 const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
+const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
+const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
 
 let todolist = {
     tasks: [
@@ -12,16 +14,19 @@ let todolist = {
             id: 1,
             title: 'Повторить неповни речення!',
             done: false,
+            isEdit: false,
         },
         {
             id: 2,
             title: 'Выучить второй стих!',
             done: false,
+            isEdit: false,
         },
         {
             id: 3,
             title: 'Выучить стих!',
             done: false,
+            isEdit: false,
         },
     ],
     cashTasks: [],
@@ -29,6 +34,7 @@ let todolist = {
     undo: {
         display: 'none',
     },
+    errorEditText: 'Untitled'
 }
 
 let reducerTodo = (state = todolist, action) => {
@@ -46,6 +52,7 @@ let reducerTodo = (state = todolist, action) => {
                 id: stateCopy.tasks.length + 1,
                 title: action.taskTitle,
                 done: false,
+                isEdit: false,
             }
             stateCopy.tasks.push(newTask);
             stateCopy.newTaskValue = '';
@@ -87,6 +94,32 @@ let reducerTodo = (state = todolist, action) => {
             stateCopy.undo.display = 'none';
 
             return stateCopy;
+        case EDIT_TASKS: 
+            stateCopy.tasks.forEach(task => {
+                if (task.id == action.taskId) {
+                    task.isEdit = true;
+                }
+            });
+
+            return stateCopy;
+        case FINISH_EDITING_TASKS: 
+            stateCopy.tasks.forEach(task => {
+                if(task.id == action.taskId && task.title == '') {
+                    task.title = stateCopy.errorEditText;
+                }
+                task.isEdit = false;
+            });
+
+            return stateCopy;
+        case ON_EDIT_INPUT_CHANGE: 
+            stateCopy.cashTasks = stateCopy.tasks;
+            stateCopy.tasks.forEach(task => {
+                if(task.id == action.taskId) {
+                    task.title = action.taskValue;
+                }
+            });
+
+            return stateCopy;       
         default:
             return state;
     }
@@ -112,6 +145,12 @@ export const returnDeletedTasks = () => {
 }
 export const editTasks = (taskId) => {
     return { type: EDIT_TASKS, taskId }
+}
+export const finishEditTasks = (taskId, taskValue) => {
+    return { type: FINISH_EDITING_TASKS, taskId, taskValue }
+}
+export const onEditInputChange = (taskValue, taskId) => {
+    return { type:ON_EDIT_INPUT_CHANGE, taskValue, taskId }
 }
 
 export default reducerTodo;
