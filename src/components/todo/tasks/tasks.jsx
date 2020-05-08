@@ -4,7 +4,7 @@ import Task from './task/task';
 
 const Tasks = (props) => {
     let tasks = props.tasks.map((task) => {
-        return <Task onEditInputChange={props.onEditInputChange} 
+        return <Task searchTasksStyles={props.searchTasksStyles} onEditInputChange={props.onEditInputChange} 
                      isEdit={task.isEdit}
                      errorEditText={props.errorEditText} 
                      editTasks={props.editTasks} 

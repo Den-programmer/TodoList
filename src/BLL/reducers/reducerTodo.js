@@ -7,6 +7,7 @@ const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
+const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE';
 
 let todolist = {
     tasks: [
@@ -34,7 +35,11 @@ let todolist = {
     undo: {
         display: 'none',
     },
-    errorEditText: 'Untitled'
+    searchValue: 'value',
+    errorEditText: 'Untitled',
+    searchTasksStyles: {
+        display: 'block',
+    }
 }
 
 let reducerTodo = (state = todolist, action) => {
@@ -42,6 +47,7 @@ let reducerTodo = (state = todolist, action) => {
     stateCopy.tasks = [...state.tasks];
     stateCopy.cashTasks = [...state.cashTasks];
     stateCopy.undo = { ...state.undo };
+    stateCopy.searchTasksStyles = { ...state.searchTasksStyles }
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
     });
@@ -94,7 +100,7 @@ let reducerTodo = (state = todolist, action) => {
             stateCopy.undo.display = 'none';
 
             return stateCopy;
-        case EDIT_TASKS: 
+        case EDIT_TASKS:
             stateCopy.tasks.forEach(task => {
                 if (task.id == action.taskId) {
                     task.isEdit = true;
@@ -102,24 +108,39 @@ let reducerTodo = (state = todolist, action) => {
             });
 
             return stateCopy;
-        case FINISH_EDITING_TASKS: 
+        case FINISH_EDITING_TASKS:
             stateCopy.tasks.forEach(task => {
-                if(task.id == action.taskId && task.title == '') {
+                if (task.id == action.taskId && task.title == '') {
                     task.title = stateCopy.errorEditText;
                 }
                 task.isEdit = false;
             });
 
             return stateCopy;
-        case ON_EDIT_INPUT_CHANGE: 
+        case ON_EDIT_INPUT_CHANGE:
             stateCopy.cashTasks = stateCopy.tasks;
             stateCopy.tasks.forEach(task => {
-                if(task.id == action.taskId) {
+                if (task.id == action.taskId) {
                     task.title = action.taskValue;
                 }
             });
 
-            return stateCopy;       
+            return stateCopy;
+        case ON_SEARCH_CHANGE:
+            stateCopy.searchValue = action.value;
+            stateCopy.tasks = stateCopy.tasks.forEach(task => {
+                if (stateCopy.searchValue !== '') {
+                    if (task.title.innerText.search(stateCopy.searchValue) == -1) {
+                        stateCopy.searchTasksStyles.display = 'none';
+                    } else {
+                        stateCopy.searchTasksStyles.display = 'block';
+                    }
+                } else {
+                    stateCopy.searchTasksStyles.display = 'block';
+                }
+            });
+
+            return stateCopy;
         default:
             return state;
     }
@@ -150,7 +171,10 @@ export const finishEditTasks = (taskId, taskValue) => {
     return { type: FINISH_EDITING_TASKS, taskId, taskValue }
 }
 export const onEditInputChange = (taskValue, taskId) => {
-    return { type:ON_EDIT_INPUT_CHANGE, taskValue, taskId }
+    return { type: ON_EDIT_INPUT_CHANGE, taskValue, taskId }
+}
+export const onSearchChange = (value) => {
+    return { type: ON_SEARCH_CHANGE, value }
 }
 
 export default reducerTodo;

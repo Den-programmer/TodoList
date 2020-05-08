@@ -6,6 +6,8 @@ import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 const Task = (props) => {   
     let editingInput = React.createRef(); 
 
+    const style = { display: props.searchTasksStyles.display }
+
     let doneTask = (e) => {
         let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
         props.doneTask(currentId);
@@ -45,8 +47,8 @@ const Task = (props) => {
                                    className={classes.editing} 
                                    placeholder="Enter something..."/> 
                                    : props.done ? 
-                                   <h6 className={classes.tdLineThrough}>{props.title}</h6> 
-                                   : <h6 title="Click to edit!" onClick={ editTask } className={classes.tdNone}>{props.title}</h6>}
+                                   <h6 style={ style } className={classes.tdLineThrough}>{props.title}</h6> 
+                                   : <h6 style={ style } title="Click to edit!" onClick={ editTask } className={classes.tdNone}>{props.title}</h6>}
             </div>
             <div className={classes.DefaultButtons}>
                 <div title="Mark as Done!" onClick={ doneTask } className={classes.btn_done}>

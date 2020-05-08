@@ -1,11 +1,11 @@
 import React from 'react';
-import TodoContainer from './components/todo/todoContainer';
+import Todo from './components/todo/todo';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <TodoContainer store={this.props.store}/>
+        <Todo store={this.props.store}/>
       </div>
     );
   }
