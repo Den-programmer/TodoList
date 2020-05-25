@@ -126,21 +126,6 @@ let reducerTodo = (state = todolist, action) => {
             });
 
             return stateCopy;
-        case ON_SEARCH_CHANGE:
-            stateCopy.searchValue = action.value;
-            stateCopy.tasks = stateCopy.tasks.forEach(task => {
-                if (stateCopy.searchValue !== '') {
-                    if (task.title.innerText.search(stateCopy.searchValue) == -1) {
-                        stateCopy.searchTasksStyles.display = 'none';
-                    } else {
-                        stateCopy.searchTasksStyles.display = 'block';
-                    }
-                } else {
-                    stateCopy.searchTasksStyles.display = 'block';
-                }
-            });
-
-            return stateCopy;
         default:
             return state;
     }
@@ -172,9 +157,6 @@ export const finishEditTasks = (taskId, taskValue) => {
 }
 export const onEditInputChange = (taskValue, taskId) => {
     return { type: ON_EDIT_INPUT_CHANGE, taskValue, taskId }
-}
-export const onSearchChange = (value) => {
-    return { type: ON_SEARCH_CHANGE, value }
 }
 
 export default reducerTodo;
