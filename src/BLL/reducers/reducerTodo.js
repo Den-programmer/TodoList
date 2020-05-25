@@ -31,14 +31,8 @@ let todolist = {
     ],
     cashTasks: [],
     newTaskValue: "",
-    // undo: {
-    //     display: 'none',
-    // },
     searchValue: 'value',
     errorEditText: 'Untitled',
-    searchTasksStyles: {
-        display: 'block',
-    }
 }
 
 let reducerTodo = (state = todolist, action) => {
@@ -61,7 +55,6 @@ let reducerTodo = (state = todolist, action) => {
             }
             stateCopy.tasks.push(newTask);
             stateCopy.newTaskValue = '';
-            // stateCopy.undo.display = 'none';
             return stateCopy;
         case TASK_VALUE_CHANGE:
             stateCopy.newTaskValue = action.newTaskValue;
