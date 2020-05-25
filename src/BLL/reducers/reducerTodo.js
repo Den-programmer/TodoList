@@ -7,7 +7,6 @@ const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
-const ON_SEARCH_CHANGE = 'ON_SEARCH_CHANGE';
 
 let todolist = {
     tasks: [
@@ -32,9 +31,9 @@ let todolist = {
     ],
     cashTasks: [],
     newTaskValue: "",
-    undo: {
-        display: 'none',
-    },
+    // undo: {
+    //     display: 'none',
+    // },
     searchValue: 'value',
     errorEditText: 'Untitled',
     searchTasksStyles: {
@@ -62,7 +61,7 @@ let reducerTodo = (state = todolist, action) => {
             }
             stateCopy.tasks.push(newTask);
             stateCopy.newTaskValue = '';
-            stateCopy.undo.display = 'none';
+            // stateCopy.undo.display = 'none';
             return stateCopy;
         case TASK_VALUE_CHANGE:
             stateCopy.newTaskValue = action.newTaskValue;
