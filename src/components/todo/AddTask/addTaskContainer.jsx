@@ -4,7 +4,6 @@ import { returnDeletedTasks,  deleteAllTasks, onTaskInputChange, addTask, } from
 
 let mapStateToProps = (state) => {
     return {
-        undo: state.todolist.undo,
         newTaskValue: state.todolist.newTaskValue,
     }
 }

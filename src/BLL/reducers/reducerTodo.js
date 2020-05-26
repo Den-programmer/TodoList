@@ -39,7 +39,6 @@ let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
     stateCopy.cashTasks = [...state.cashTasks];
-    stateCopy.undo = { ...state.undo };
     stateCopy.searchTasksStyles = { ...state.searchTasksStyles }
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
@@ -61,8 +60,8 @@ let reducerTodo = (state = todolist, action) => {
             return stateCopy;
         case DONE_TASK:
             tasks.forEach(task => {
-                if (task.id == action.taskId) {
-                    if (task.done == false) {
+                if (task.id === action.taskId) {
+                    if (task.done === false) {
                         task.done = true;
                     } else {
                         task.done = false;
@@ -84,17 +83,15 @@ let reducerTodo = (state = todolist, action) => {
                 stateCopy.cashTasks = stateCopy.tasks;
             }
             stateCopy.tasks = [];
-            stateCopy.undo.display = 'block';
 
             return stateCopy;
         case RETURN_DELETED_TASKS:
             stateCopy.tasks = stateCopy.cashTasks;
-            stateCopy.undo.display = 'none';
 
             return stateCopy;
         case EDIT_TASKS:
             stateCopy.tasks.forEach(task => {
-                if (task.id == action.taskId) {
+                if (task.id === action.taskId) {
                     task.isEdit = true;
                 }
             });
@@ -102,7 +99,7 @@ let reducerTodo = (state = todolist, action) => {
             return stateCopy;
         case FINISH_EDITING_TASKS:
             stateCopy.tasks.forEach(task => {
-                if (task.id == action.taskId && task.title == '') {
+                if (task.id === action.taskId && task.title === '') {
                     task.title = stateCopy.errorEditText;
                 }
                 task.isEdit = false;
@@ -112,7 +109,7 @@ let reducerTodo = (state = todolist, action) => {
         case ON_EDIT_INPUT_CHANGE:
             stateCopy.cashTasks = stateCopy.tasks;
             stateCopy.tasks.forEach(task => {
-                if (task.id == action.taskId) {
+                if (task.id === action.taskId) {
                     task.title = action.taskValue;
                 }
             });
