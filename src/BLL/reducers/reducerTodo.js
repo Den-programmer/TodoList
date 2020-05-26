@@ -31,7 +31,6 @@ let todolist = {
     ],
     cashTasks: [],
     newTaskValue: "",
-    searchValue: 'value',
     errorEditText: 'Untitled',
 }
 
