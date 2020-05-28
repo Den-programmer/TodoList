@@ -1,0 +1,82 @@
+.unitingFlex {
+    display:flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+.containerHidden {
+    display:none;
+    width: 50%;
+    margin: 0 auto;
+}
+.row {
+    display:flex;
+    align-items:center;
+    width: 90%;
+    margin: 0 auto;
+    justify-content:space-between;
+    padding-top: 20px;
+}
+.input {
+    width: 480px;
+    padding:10px;
+}
+.input:focus {
+    border:1px solid #007BFF;
+}
+.managePanel {
+    display: flex;
+    width:620px;
+    justify-content: space-between;
+    align-items:center;
+    margin: 0 auto;
+}
+.btn_addTask {
+    margin: 10px;
+    margin-right: 0;
+    float:right;
+}
+.btn_addTask button {
+    color:#FFF;
+    background: linear-gradient(to right,#006C0A, #28A745);
+    border:1px solid #28A745;
+    padding: 10px 20px;
+    border-radius:5px;
+}
+.btn_addTask button:hover {
+    transition:all .5s ease;
+    background: linear-gradient(to right,#28A745, #006C0A);
+    color:#8D00A1;
+}
+.warningRedText {
+    color:red;
+}
+
+
+
+
+.deleteAllTasks {
+    display:flex;
+}
+.trashCan {
+    font-size: 20px;
+    cursor:pointer;
+    opacity:0.7;
+    margin: 10px;
+}
+
+.trashCan:hover {
+    transition:all .2s ease;
+    opacity:1;
+}
+
+.undo {
+    cursor:pointer;
+    opacity:0.7;
+    font-size: 20px;
+    margin:10px;
+}
+.undo:hover {
+    transition:all .2s linear;
+    opacity:1;
+}

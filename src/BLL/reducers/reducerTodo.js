@@ -1,7 +1,6 @@
 const ADD_TASK = 'ADD-TASK';
 const DONE_TASK = 'DONE-TASK';
 const DELETE_TASK = 'DELETE-TASK';
-const TASK_VALUE_CHANGE = 'TASK-VALUE-CHANGE';
 const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS';
 const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
@@ -30,7 +29,6 @@ let todolist = {
         },
     ],
     cashTasks: [],
-    newTaskValue: "",
     errorEditText: 'Untitled',
 }
 
@@ -52,10 +50,6 @@ let reducerTodo = (state = todolist, action) => {
                 isEdit: false,
             }
             stateCopy.tasks.push(newTask);
-            stateCopy.newTaskValue = '';
-            return stateCopy;
-        case TASK_VALUE_CHANGE:
-            stateCopy.newTaskValue = action.newTaskValue;
             return stateCopy;
         case DONE_TASK:
             tasks.forEach(task => {
@@ -127,9 +121,6 @@ export let doneTask = (taskId) => {
 }
 export let deleteTask = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }
-}
-export let onTaskInputChange = (newTaskValue) => {
-    return { type: TASK_VALUE_CHANGE, newTaskValue }
 }
 export const deleteAllTasks = () => {
     return { type: DELETE_ALL_TASKS }
