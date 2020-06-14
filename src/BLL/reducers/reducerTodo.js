@@ -1,3 +1,5 @@
+import { stopSubmit } from "redux-form";
+
 const ADD_TASK = 'ADD-TASK';
 const DONE_TASK = 'DONE-TASK';
 const DELETE_TASK = 'DELETE-TASK';
@@ -6,6 +8,7 @@ const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
+const SEARCH_TASKS = 'SEARCH_TASKS';
 
 let todolist = {
     tasks: [
@@ -36,7 +39,6 @@ let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
     stateCopy.cashTasks = [...state.cashTasks];
-    stateCopy.searchTasksStyles = { ...state.searchTasksStyles }
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
     });
@@ -66,9 +68,7 @@ let reducerTodo = (state = todolist, action) => {
             return stateCopy;
         case DELETE_TASK:
             stateCopy.tasks = stateCopy.tasks.filter(t => {
-                if (t.id !== action.taskID) {
-                    return true;
-                }
+                if (t.id !== action.taskID) return true;
             });
             return stateCopy;
         case DELETE_ALL_TASKS:
@@ -84,9 +84,7 @@ let reducerTodo = (state = todolist, action) => {
             return stateCopy;
         case EDIT_TASKS:
             stateCopy.tasks.forEach(task => {
-                if (task.id === action.taskId) {
-                    task.isEdit = true;
-                }
+                if (task.id === action.taskId) task.isEdit = true;
             });
 
             return stateCopy;
@@ -102,9 +100,7 @@ let reducerTodo = (state = todolist, action) => {
         case ON_EDIT_INPUT_CHANGE:
             stateCopy.cashTasks = stateCopy.tasks;
             stateCopy.tasks.forEach(task => {
-                if (task.id === action.taskId) {
-                    task.title = action.taskValue;
-                }
+                if (task.id === action.taskId) task.title = action.taskValue;
             });
 
             return stateCopy;
@@ -113,13 +109,15 @@ let reducerTodo = (state = todolist, action) => {
     }
 }
 
-export let addTask = (taskTitle) => {
+/* Action Creators! */
+
+const addTaskAC = (taskTitle) => {
     return { type: ADD_TASK, taskTitle: taskTitle }
 }
-export let doneTask = (taskId) => {
+export const doneTask = (taskId) => {
     return { type: DONE_TASK, taskId: taskId, }
 }
-export let deleteTask = (taskID) => {
+export const deleteTask = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }
 }
 export const deleteAllTasks = () => {
@@ -136,6 +134,16 @@ export const finishEditTasks = (taskId, taskValue) => {
 }
 export const onEditInputChange = (taskValue, taskId) => {
     return { type: ON_EDIT_INPUT_CHANGE, taskValue, taskId }
+}
+export const searchTasks = (searchValue) => {
+    return { type: SEARCH_TASKS, searchValue }
+}
+
+/* Thunk Creators! */
+
+export const addTask = (taskTitle) => (dispatch) => {
+    if (taskTitle === '') dispatch(stopSubmit('addTaskForm', { _error: 'Enter task\'s title!' }));    
+    dispatch(addTaskAC(taskTitle));
 }
 
 export default reducerTodo;

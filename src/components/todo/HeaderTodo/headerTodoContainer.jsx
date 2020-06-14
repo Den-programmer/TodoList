@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import HeaderTodo from "./headerTodo";
 import { authentication } from '../../../BLL/reducers/reducerAuth';
+import { searchTasks } from '../../../BLL/reducers/reducerTodo';
 
 let mapStateToProps = (state) => {
     return {
@@ -8,6 +9,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-const HeaderTodoContainer = connect(mapStateToProps, { authentication })(HeaderTodo);
+const HeaderTodoContainer = connect(mapStateToProps, { authentication, searchTasks })(HeaderTodo);
 
 export default HeaderTodoContainer;

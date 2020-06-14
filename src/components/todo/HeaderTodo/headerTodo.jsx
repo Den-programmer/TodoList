@@ -2,8 +2,17 @@ import React from 'react';
 import classes from './headerTodo.module.css';
 
 class HeaderTodo extends React.Component {
+    state = {
+        searchVal: ''
+    }
     componentDidMount() {
         this.props.authentication();
+    }
+    onSearchValueChanged = (e) => {
+        this.setState({
+            searchVal: e.currentTarget.value
+        });
+        this.props.searchTasks(this.state.searchVal);
     }
     render() {
         return (
@@ -13,7 +22,7 @@ class HeaderTodo extends React.Component {
                         <h1 title="Best wishes your TodoList!">TodoList</h1>
                     </div>
                     <div className={classes.search}>
-                        <input title="Search!" className={classes.input} type="text" placeholder="Search..."/>
+                        <input onChange={this.onSearchValueChanged} value={this.state.searchVal} title="Search!" className={classes.input} type="text" placeholder="Search..."/>
                     </div>
                 </div>
             </header>
