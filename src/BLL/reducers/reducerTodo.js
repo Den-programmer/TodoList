@@ -111,7 +111,7 @@ let reducerTodo = (state = todolist, action) => {
 
 /* Action Creators! */
 
-const addTaskAC = (taskTitle) => {
+export const addTask = (taskTitle) => {
     return { type: ADD_TASK, taskTitle: taskTitle }
 }
 export const doneTask = (taskId) => {
@@ -137,13 +137,6 @@ export const onEditInputChange = (taskValue, taskId) => {
 }
 export const searchTasks = (searchValue) => {
     return { type: SEARCH_TASKS, searchValue }
-}
-
-/* Thunk Creators! */
-
-export const addTask = (taskTitle) => (dispatch) => {
-    if (taskTitle === '') dispatch(stopSubmit('addTaskForm', { _error: 'Enter task\'s title!' }));    
-    dispatch(addTaskAC(taskTitle));
 }
 
 export default reducerTodo;
