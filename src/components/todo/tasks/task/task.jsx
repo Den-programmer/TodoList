@@ -4,33 +4,26 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 
 const Task = (props) => {   
-    let editingInput = React.createRef(); 
-
-    let doneTask = (e) => {
-        let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        props.doneTask(currentId);
+    let doneTask = () => {
+        props.doneTask(props.id);
     }
 
-    let deleteTask = (e) => {
-        let currentId = Number(e.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        props.deleteTask(currentId);
+    let deleteTask = () => {
+        props.deleteTask(props.id);
     }
 
-    let editTask = (event) => {
-        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        props.editTasks(currentId);
+    let editTask = () => {
+        props.editTasks(props.id);
     }
 
-    let finishEditTask = (event) => {
-        let taskValue = editingInput.current.value;
-        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        props.finishEditTasks(currentId, taskValue);
+    let finishEditTask = (e) => {
+        let taskValue = e.currentTarget.value;
+        props.finishEditTasks(props.id, taskValue);
     }
 
-    let onEditInputChange = (event) => {
-        let currentId = Number(event.currentTarget.parentNode.parentNode.getAttribute("Id"));
-        let taskValue = editingInput.current.value;
-        props.onEditInputChange(taskValue, currentId);
+    let onEditInputChange = (e) => {
+        let taskValue = e.currentTarget.value;
+        props.onEditInputChange(taskValue, props.id);
     }
 
     return (
@@ -38,7 +31,6 @@ const Task = (props) => {
             <div className={classes.title}>
             {props.isEdit ? <input autoFocus={true} 
                                    onChange={ onEditInputChange } 
-                                   ref={ editingInput } 
                                    title="Edit your task!" 
                                    onBlur={ finishEditTask } 
                                    value={props.title} 
