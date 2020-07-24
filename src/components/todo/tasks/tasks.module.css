@@ -1,4 +1,15 @@
 .tasks {
     width: 90%;
     margin: 0 auto;
+    min-height: 150px;
+}
+
+/* No Tasks! */
+
+.noTasks {
+    text-align: center;
+}
+.noTasks img {
+    width: 200px;
+    height: 200px;
 }

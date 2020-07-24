@@ -1,9 +1,10 @@
-import React from 'react';
-import classes from './tasks.module.css';
-import Task from './task/task';
+import React from 'react'
+import classes from './tasks.module.css'
+import Task from './task/task'
+import  sadSmile  from '../../../images/Smiles/sadSmile.png'
 
 const Tasks = (props) => {
-    let tasks = props.tasks.map((task) => {
+    const tasks = props.tasks.map((task) => {
         return <Task onEditInputChange={props.onEditInputChange} 
                      isEdit={task.isEdit}
                      errorEditText={props.errorEditText} 
@@ -13,12 +14,13 @@ const Tasks = (props) => {
                      title={task.title} 
                      done={task.done} doneTask={props.doneTask} 
                      deleteTask={props.deleteTask}/>
-    });
+    })
     return (
         <div className={classes.tasks}>
-            {tasks}
+            {tasks.length !== 0 ? tasks : 
+            <div className={classes.noTasks}><h2 className={classes.titleNoTasks}>You do not have some tasks!</h2><img src={sadSmile} alt="sad smile"/></div>}
         </div>
-    );
+    )
 }
 
-export default Tasks;
+export default Tasks

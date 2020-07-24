@@ -1,18 +1,18 @@
-import React from 'react';
-import classes from './headerTodo.module.css';
+import React from 'react'
+import classes from './headerTodo.module.css'
 
 class HeaderTodo extends React.Component {
     state = {
         searchVal: ''
     }
     componentDidMount() {
-        this.props.authentication();
+        this.props.authentication()
     }
     onSearchValueChanged = (e) => {
         this.setState({
             searchVal: e.currentTarget.value
-        });
-        this.props.searchTasks(this.state.searchVal);
+        })
+        this.props.search(this.state.searchVal)
     }
     render() {
         return (
@@ -26,8 +26,8 @@ class HeaderTodo extends React.Component {
                     </div>
                 </div>
             </header>
-        );
+        )
     }
 }
 
-export default HeaderTodo;
+export default HeaderTodo

@@ -1,5 +1,3 @@
-import { stopSubmit } from "redux-form";
-
 const ADD_TASK = 'ADD-TASK';
 const DONE_TASK = 'DONE-TASK';
 const DELETE_TASK = 'DELETE-TASK';
@@ -8,7 +6,7 @@ const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
 const EDIT_TASKS = 'EDIT_TASKS';
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
-const SEARCH_TASKS = 'SEARCH_TASKS';
+const SEARCH = 'SEARCH';
 
 let todolist = {
     tasks: [
@@ -32,13 +30,12 @@ let todolist = {
         },
     ],
     cashTasks: [],
-    errorEditText: 'Untitled',
+    errorEditText: 'Untitled'
 }
 
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
     stateCopy.tasks = [...state.tasks];
-    stateCopy.cashTasks = [...state.cashTasks];
     let tasks = stateCopy.tasks.map(task => {
         return { ...task }
     });
@@ -102,8 +99,13 @@ let reducerTodo = (state = todolist, action) => {
             stateCopy.tasks.forEach(task => {
                 if (task.id === action.taskId) task.title = action.taskValue;
             });
-
             return stateCopy;
+        case SEARCH:
+            return {
+                ...state,
+                tasks: action.searchValue !== '' ? state.tasks.filter(task => task.title.search(action.searchValue) > -1) 
+                : state.tasks
+            }
         default:
             return state;
     }
@@ -135,8 +137,8 @@ export const finishEditTasks = (taskId, taskValue) => {
 export const onEditInputChange = (taskValue, taskId) => {
     return { type: ON_EDIT_INPUT_CHANGE, taskValue, taskId }
 }
-export const searchTasks = (searchValue) => {
-    return { type: SEARCH_TASKS, searchValue }
+export const search = (searchValue) => {
+    return { type: SEARCH, searchValue }
 }
 
 export default reducerTodo;
