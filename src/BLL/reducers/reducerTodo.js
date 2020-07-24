@@ -1,12 +1,11 @@
-const ADD_TASK = 'ADD-TASK';
-const DONE_TASK = 'DONE-TASK';
-const DELETE_TASK = 'DELETE-TASK';
-const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS';
-const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS';
-const EDIT_TASKS = 'EDIT_TASKS';
-const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS';
-const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE';
-const SEARCH = 'SEARCH';
+const ADD_TASK = 'ADD-TASK'
+const DONE_TASK = 'DONE-TASK'
+const DELETE_TASK = 'DELETE-TASK'
+const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS'
+const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS'
+const EDIT_TASKS = 'EDIT_TASKS'
+const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS'
+const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE'
 
 let todolist = {
     tasks: [
@@ -14,19 +13,19 @@ let todolist = {
             id: 1,
             title: 'Повторить неповни речення!',
             done: false,
-            isEdit: false,
+            isEdit: false
         },
         {
             id: 2,
             title: 'Выучить второй стих!',
             done: false,
-            isEdit: false,
+            isEdit: false
         },
         {
             id: 3,
             title: 'Выучить стих!',
             done: false,
-            isEdit: false,
+            isEdit: false
         },
     ],
     cashTasks: [],
@@ -35,10 +34,7 @@ let todolist = {
 
 let reducerTodo = (state = todolist, action) => {
     let stateCopy = { ...state }
-    stateCopy.tasks = [...state.tasks];
-    let tasks = stateCopy.tasks.map(task => {
-        return { ...task }
-    });
+    stateCopy.tasks = [...state.tasks]
 
     switch (action.type) {
         case ADD_TASK:
@@ -46,68 +42,61 @@ let reducerTodo = (state = todolist, action) => {
                 id: stateCopy.tasks.length + 1,
                 title: action.taskTitle,
                 done: false,
-                isEdit: false,
+                isEdit: false
             }
-            stateCopy.tasks.push(newTask);
-            return stateCopy;
+            stateCopy.tasks.push(newTask)
+            return stateCopy
         case DONE_TASK:
-            tasks.forEach(task => {
+            stateCopy.tasks.forEach(task => {
                 if (task.id === action.taskId) {
                     if (task.done === false) {
-                        task.done = true;
+                        task.done = true
                     } else {
-                        task.done = false;
+                        task.done = false
                     }
                 }
-            });
-            stateCopy.tasks = tasks;
+            })
 
-            return stateCopy;
+            return stateCopy
         case DELETE_TASK:
             stateCopy.tasks = stateCopy.tasks.filter(t => {
-                if (t.id !== action.taskID) return true;
+                if (t.id !== action.taskID) return true
             });
-            return stateCopy;
+            return stateCopy
         case DELETE_ALL_TASKS:
             if (stateCopy.tasks.length > 0) {
-                stateCopy.cashTasks = stateCopy.tasks;
+                stateCopy.cashTasks = stateCopy.tasks
             }
-            stateCopy.tasks = [];
+            stateCopy.tasks = []
 
-            return stateCopy;
+            return stateCopy
         case RETURN_DELETED_TASKS:
-            stateCopy.tasks = stateCopy.cashTasks;
+            stateCopy.tasks = stateCopy.cashTasks
 
-            return stateCopy;
+            return stateCopy
         case EDIT_TASKS:
             stateCopy.tasks.forEach(task => {
-                if (task.id === action.taskId) task.isEdit = true;
-            });
+                if (task.id === action.taskId) task.isEdit = true
+            })
 
             return stateCopy;
         case FINISH_EDITING_TASKS:
             stateCopy.tasks.forEach(task => {
                 if (task.id === action.taskId && task.title === '') {
-                    task.title = stateCopy.errorEditText;
+                    task.title = stateCopy.errorEditText
                 }
-                task.isEdit = false;
-            });
+                task.isEdit = false
+            })
 
-            return stateCopy;
+            return stateCopy
         case ON_EDIT_INPUT_CHANGE:
-            stateCopy.cashTasks = stateCopy.tasks;
+            stateCopy.cashTasks = stateCopy.tasks
             stateCopy.tasks.forEach(task => {
-                if (task.id === action.taskId) task.title = action.taskValue;
+                if (task.id === action.taskId) task.title = action.taskValue
             });
-            return stateCopy;
-        case SEARCH:
-            return {
-                ...state,
-                tasks: action.searchValue !== '' ? state.tasks.filter(task => task.title.search(action.searchValue) > -1) 
-                : state.tasks
-            }
+            return stateCopy
         default:
-            return state;
+            return state
     }
 }
 
@@ -117,7 +106,7 @@ export const addTask = (taskTitle) => {
     return { type: ADD_TASK, taskTitle: taskTitle }
 }
 export const doneTask = (taskId) => {
-    return { type: DONE_TASK, taskId: taskId, }
+    return { type: DONE_TASK, taskId: taskId }
 }
 export const deleteTask = (taskID) => {
     return { type: DELETE_TASK, taskID: taskID }
@@ -137,8 +126,5 @@ export const finishEditTasks = (taskId, taskValue) => {
 export const onEditInputChange = (taskValue, taskId) => {
     return { type: ON_EDIT_INPUT_CHANGE, taskValue, taskId }
 }
-export const search = (searchValue) => {
-    return { type: SEARCH, searchValue }
-}
 
-export default reducerTodo;
+export default reducerTodo

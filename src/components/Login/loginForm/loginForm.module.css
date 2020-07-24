@@ -1,0 +1,17 @@
+.rememberMe {
+    display: flex;
+    align-items: center;
+}
+.rememberMe input {
+    margin: 10px;
+}
+.rememberMe p {
+    font-weight: bold;
+}
+.error span {
+    color: red;
+    font-weight: bold;
+}
+.btn_login {
+    margin: 10px 0;
+}

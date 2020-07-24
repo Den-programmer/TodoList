@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import reducerTodo from "./reducers/reducerTodo";
 import { reducer as formReducer } from 'redux-form';
 import thunkMiddleWare from 'redux-thunk';
+import reducerAuth from "./reducers/reducerAuth";
 
 let reducers = combineReducers({
     todolist: reducerTodo,
+    auth: reducerAuth,
     form: formReducer
 });
 

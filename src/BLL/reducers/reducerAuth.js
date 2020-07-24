@@ -1,42 +1,58 @@
-import { AuthAPI } from "../../DAL/api";
+import { AuthAPI } from "../../DAL/api"
+import { stopSubmit } from 'redux-form'
 
-const AUTH = 'AUTH';
+const AUTH = 'AUTH'
 
 let auth = {
     userId: null,
     email: null,
     login: null,
-    rememberMe: null,
+    rememberMe: false,
     isAuth: false
 }
 
 let reducerAuth = (state = auth, action) => {
-    let stateCopy = { ...state }
     switch (action.type) {
         case AUTH:
-
-            return stateCopy;
+            return {
+                ...state,
+                email: action.email,
+                login: action.email,
+                rememberMe: action.rememberMe,
+                isAuth: action.isAuth,
+                userId: action.userId
+            }
         default:
-            return state;
+            return state
     }
 }
 
 // Action Creators!
 
-export const authAC = (email, rememberMe = false, userId, isAuth) => {
+const authAC = (email, rememberMe, userId, isAuth) => {
     return { type: AUTH, email, rememberMe, userId, isAuth }
 }
 
 // Thunk Creators!
 
-export const authentication = () => {
-    return (dispatch) => {
-        AuthAPI.auth().then(data => {
-            if(data.resultCode === 0) {
-                dispatch(authAC(data.email, null, data.userId, true));
-            }
-        });
-    }
+export const authentication = (rememberMe = false) => async (dispatch) => {
+    let data = await AuthAPI.auth()
+    if (data.resultCode === 0) dispatch(authAC(data.email, rememberMe, data.userId, true))
 }
 
-export default reducerAuth;
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    let data = await AuthAPI.login(email, password, rememberMe)
+    if(data.resultCode === 0) {
+        dispatch(authentication(rememberMe))
+    } else {
+        const message = data.messages[0]
+        dispatch(stopSubmit('login', {_error: message}))
+    }
+}
+export const logout = () => async (dispatch) => {
+    let data = await AuthAPI.logout()
+    if(data.resultCode === 0) dispatch(authAC(null, false, null, false))
+}
+
+
+export default reducerAuth
