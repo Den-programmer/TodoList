@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 import Header from './header'
 import { setMenuStatus } from '../../BLL/reducers/reducerSidebar'
-import { logout } from '../../BLL/reducers/reducerAuth'
+import { logout, authentication } from '../../BLL/reducers/reducerAuth'
  
 let mapStateToProps = (state) => ({
 
 })
 
-const HeaderContainer = connect(mapStateToProps, { setMenuStatus, logout })(Header)
+const HeaderContainer = connect(mapStateToProps, { setMenuStatus, logout, authentication })(Header)
 
 export default HeaderContainer
