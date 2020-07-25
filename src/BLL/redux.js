@@ -3,10 +3,12 @@ import reducerTodo from "./reducers/reducerTodo";
 import { reducer as formReducer } from 'redux-form';
 import thunkMiddleWare from 'redux-thunk';
 import reducerAuth from "./reducers/reducerAuth";
+import reducerSidebar from "./reducers/reducerSidebar";
 
 let reducers = combineReducers({
     todolist: reducerTodo,
     auth: reducerAuth,
+    sidebar: reducerSidebar,
     form: formReducer
 });
 

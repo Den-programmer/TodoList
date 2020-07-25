@@ -7,7 +7,7 @@ const EDIT_TASKS = 'EDIT_TASKS'
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS'
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE'
 
-let todolist = {
+const todolist = {
     tasks: [
         {
             id: 1,
