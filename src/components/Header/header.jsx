@@ -10,7 +10,7 @@ const Header = (props) => {
                 <FontAwesomeIcon onClick={props.setMenuStatus} className={classes.icon} icon={faBars}/>        
             </div>
             <div className={classes.btn_logout}>
-                <button>Logout</button>
+                <button onClick={props.logout}>Logout</button>
             </div>  
         </header>
     )
