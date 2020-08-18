@@ -9,7 +9,7 @@ let reducerSidebar = (state = sidebarState, action) => {
         case SET_MENU_STATUS:
             return {
                 ...state,
-                isMenuActive: state.isMenuActive ? false : true
+                isMenuActive: !state.isMenuActive
             }
         default:
             return state
@@ -18,8 +18,7 @@ let reducerSidebar = (state = sidebarState, action) => {
 
 /* Action Creators! */
 
-export const setMenuStatus = () => {
-    return { type: SET_MENU_STATUS }
-}
+export const setMenuStatus = () => ({ type: SET_MENU_STATUS })
+
 
 export default reducerSidebar

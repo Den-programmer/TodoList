@@ -9,7 +9,12 @@
 .header > div {
     padding: 10px;
 }
-.icon {
+.iconTurnTheMenu {
+    color: #F8BE9A;
+    font-size: 20px;
+    cursor: pointer;
+}
+.iconCloseTheMenu {
     color: #F8BE9A;
     font-size: 20px;
     cursor: pointer;

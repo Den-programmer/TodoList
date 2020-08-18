@@ -21,11 +21,9 @@
 }
 .list > li:hover {
     transition: all .3s linear;
-    border-bottom: 1px solid #ACEE04;
+    border-bottom: 1px solid purple;
+    padding: 5px 0px;
 }
-/* .list > li:active {
-    background-color: #fff;
-} */
 
 .sidebar {
     background: #20232A;
@@ -34,8 +32,6 @@
     min-height: 700px;
 }
 .sidebar h4 {
-    /* text-align: left;
-    text-indent: 1em; */
     font-size: 18px;
     color: #ACEE04;
 }
