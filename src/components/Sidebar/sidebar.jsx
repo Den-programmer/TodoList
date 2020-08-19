@@ -14,7 +14,7 @@ const Sidebar = ({ isMenuActive }) => {
     //     animationName: Radium.keyframes(fadeOutLeft, 'fadeOutLeft')
     // }
     return (
-        <React.Fragment>
+        <div className={classes.rootFragment}>
             {isMenuActive && <StyleRoot>
                 <div style={style} className={classes.block}>
                     <div className={classes.sidebar}>
@@ -51,7 +51,7 @@ const Sidebar = ({ isMenuActive }) => {
                     </div>
                 </div>
             </StyleRoot>}
-        </React.Fragment>
+        </div>
     )
 }
 

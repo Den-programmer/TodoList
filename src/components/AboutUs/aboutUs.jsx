@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './aboutUs.module.css'
-import { Redirect } from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 import LoginContainer from '../Login/loginContainer'
 
 const AboutUs = ({ isAuth }) => {
@@ -16,7 +16,7 @@ const AboutUs = ({ isAuth }) => {
             <div className={classes.title}>
                 <h1>Get everything in order with TodoList</h1>
                 <div className={classes.btn_startNow}>
-                    <button onClick={startNow}>Start now!</button>
+                    <NavLink onClick={startNow} to="/">Start now!</NavLink>
                 </div>
             </div>
         </div>
