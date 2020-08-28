@@ -24,3 +24,9 @@
     font-weight: bold;
     font-family: 'Ubuntu', Arial, sans-serif;
 }
+
+.imgApp {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}

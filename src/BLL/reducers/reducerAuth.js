@@ -3,7 +3,7 @@ import { stopSubmit } from 'redux-form'
 
 const AUTH = 'AUTH'
 
-let auth = {
+const auth = {
     userId: null,
     email: null,
     login: null,
@@ -11,7 +11,7 @@ let auth = {
     isAuth: false
 }
 
-let reducerAuth = (state = auth, action) => {
+const reducerAuth = (state = auth, action) => {
     switch (action.type) {
         case AUTH:
             return {
@@ -29,19 +29,17 @@ let reducerAuth = (state = auth, action) => {
 
 // Action Creators!
 
-const authAC = (email, rememberMe, userId, isAuth) => {
-    return { type: AUTH, email, rememberMe, userId, isAuth }
-}
+const authAC = (email, rememberMe, userId, isAuth) => ({ type: AUTH, email, rememberMe, userId, isAuth })
 
 // Thunk Creators!
 
 export const authentication = (rememberMe = false) => async (dispatch) => {
-    let data = await AuthAPI.auth()
+    const data = await AuthAPI.auth()
     if (data.resultCode === 0) dispatch(authAC(data.email, rememberMe, data.userId, true))
 }
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
-    let data = await AuthAPI.login(email, password, rememberMe)
+    const data = await AuthAPI.login(email, password, rememberMe)
     if(data.resultCode === 0) {
         dispatch(authentication(rememberMe))
     } else {
@@ -50,7 +48,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
     }
 }
 export const logout = () => async (dispatch) => {
-    let data = await AuthAPI.logout()
+    const data = await AuthAPI.logout()
     if(data.resultCode === 0) dispatch(authAC(null, false, null, false))
 }
 

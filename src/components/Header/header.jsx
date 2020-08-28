@@ -10,9 +10,6 @@ class Header extends React.Component {
     // state = {
     //     style: {}
     // }
-    componentDidMount() {
-        // this.props.authentication()
-    }
     // state = {
     //     style: {
     //         animation: 'x 1s',

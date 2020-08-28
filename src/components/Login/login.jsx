@@ -1,10 +1,14 @@
 import React from 'react'
 import classes from './login.module.css'
 import LoginReduxForm from './loginForm/loginForm'
+import { useEffect } from 'react'
 
-const Login = ({ login }) => {
-    let onSubmit = (FormData) => {
-        let {email, password, rememberMe} = FormData
+const Login = ({ login, rememberMe, authentication }) => {
+    useEffect(() => {
+        rememberMe && authentication()
+    }, []) 
+    const onSubmit = (FormData) => {
+        const {email, password, rememberMe} = FormData
         login(email, password, rememberMe)
     }
     return (
