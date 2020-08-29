@@ -8,6 +8,7 @@
 
 .noTasks {
     text-align: center;
+    user-select: none;
 }
 .noTasks img {
     width: 200px;

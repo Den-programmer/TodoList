@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Radium, { StyleRoot } from 'radium'
 import { fadeInLeft, fadeOutLeft } from 'react-animations'
 
-const Sidebar = ({ isMenuActive }) => {
+const Sidebar = (props) => {
     const style = {
         animation: 'x 1s',
         animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft')
@@ -13,9 +13,18 @@ const Sidebar = ({ isMenuActive }) => {
     //     animation: 'x 1s',
     //     animationName: Radium.keyframes(fadeOutLeft, 'fadeOutLeft')
     // }
+    const chooseActiveTasks = () => {
+        props.chooseActiveTasks()
+        props.filterActiveTasks()
+    }
+    const chooseDoneTasks = () => {
+        props.chooseDoneTasks()
+        props.filterDoneTasks()
+    }
+    const chooseAllTasks = () => props.chooseAllTasks() 
     return (
         <div className={classes.rootFragment}>
-            {isMenuActive && <StyleRoot>
+            {props.isMenuActive && <StyleRoot>
                 <div style={style} className={classes.block}>
                     <div className={classes.sidebar}>
                         <div className={classes.title}>
@@ -28,16 +37,16 @@ const Sidebar = ({ isMenuActive }) => {
                                     <li><NavLink to="/">Home</NavLink></li>
                                     <li><NavLink to="/aboutUS">About Us</NavLink></li>
                                     <li><NavLink to="/contact">Contact</NavLink></li>
-                                    {/* <li><NavLink to="/developerInformation">Portfolio</NavLink></li> */}
+                                    {/* <li><a href="portfolio">Portfolio</a></li> */}
                                 </ul>
                             </div>
                             <div className={classes.tasksOptions}>
                                 <h4>Tasks Filter</h4>
                                 <div className={classes.horizontal_line}></div>
                                 <ul className={classes.list}>
-                                    <li>Active Tasks</li>
-                                    <li>Done Tasks</li>
-                                    <li>All Tasks</li>
+                                    <li className={props.isActiveTasks && classes.active} onClick={chooseActiveTasks}>Active Tasks</li>
+                                    <li className={props.isDoneTasks && classes.active} onClick={chooseDoneTasks}>Done Tasks</li>
+                                    <li className={props.isAllTasks && classes.active} onClick={chooseAllTasks}>All Tasks</li>
                                 </ul>
                             </div>
                             <div className={classes.otherOptions}>

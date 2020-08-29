@@ -1,3 +1,8 @@
+.active {
+    color: #333333 !important;
+    font-weight: bold;
+}
+
 .list {
     list-style: none;
     margin-block-start: 0;
@@ -7,24 +12,8 @@
     padding-inline-start: 0;
     padding: 10px 0;
 }
-/* .list > li {
-    color:#ACEE04; 
-    font-size: 17px;
-    cursor: pointer;
-    width: 85%;
-    margin: 0 auto;
-}
-.list > li > a {
-    color:#ACEE04; 
-    cursor: pointer;
-    text-decoration: none;
-}
-.list > li:hover {
-    transition: all .3s linear;
-    border-bottom: 1px solid purple;
-    padding: 5px 0px;
-} */
 .list > li {
+    user-select: none;
     color:#FFF; 
     font-size: 17px;
     cursor: pointer;
@@ -41,28 +30,12 @@
     border-bottom: 1px solid #1B3660;
     padding: 5px 0px;
 }
-
-/* .sidebar {
-    background: #20232A;
-    text-align: center;
-    min-width: 270px;
-    min-height: 700px;
-} */
 .sidebar {
     background: #DE557C;
     text-align: center;
     min-width: 270px;
     min-height: 700px;
 }
-/* .sidebar h4 {
-    font-size: 18px;
-    color: #ACEE04;
-}
-.title h3 {
-    color: #ACEE04;
-    font-size: 20px;
-    padding-top: 15px
-} */
 .sidebar h4 {
     font-size: 18px;
     color: #1B3660;
