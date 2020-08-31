@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './sidebar.module.css'
 import { NavLink } from 'react-router-dom'
 import Radium, { StyleRoot } from 'radium'
-import { fadeInLeft, fadeOutLeft } from 'react-animations'
+import { fadeInLeft } from 'react-animations'
 import BackgroundModalContainer from '../Background/backgroundModalContainer'
 
 const Sidebar = (props) => {
@@ -10,10 +10,6 @@ const Sidebar = (props) => {
         animation: 'x 1s',
         animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft')
     }
-    // fadeOutLeft: {
-    //     animation: 'x 1s',
-    //     animationName: Radium.keyframes(fadeOutLeft, 'fadeOutLeft')
-    // }
     const chooseActiveTasks = () => {
         props.chooseActiveTasks()
         props.filterActiveTasks()

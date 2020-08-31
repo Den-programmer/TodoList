@@ -1,6 +1,17 @@
+/* Header! */
+
 .website {
     width: 1170px;
     margin: 0 auto;
+}
+.website h2, .website p {
+    color: #fff;
+}
+.website h2 {
+    font-size: 32px;
+}
+.website p {
+    font-size: 25px;
 }
 .title {
     width: 600px;
@@ -25,8 +36,77 @@
     font-family: 'Ubuntu', Arial, sans-serif;
 }
 
+/* Upload your mind! */
+
+.uploadUrMind {
+    text-align: center;
+    margin: 0 auto;
+    width: 560px;
+    padding: 50px 0px;
+}
 .imgApp {
     display: flex;
     justify-content: center;
     margin: 40px;
+}
+
+/* Features! */
+
+.features {
+    padding: 50px 0px;
+}
+.features__title {
+    text-align: center;
+    padding-bottom: 50px;
+}
+.features__mainContent {
+    display: flex;
+}
+.features__mainContent > div {
+    margin:0 15px;
+}
+
+.backgroundsTitle {
+    text-align: center;
+    padding: 60px 0px;
+}
+.backgroundsImg {
+    display: flex;
+    justify-content: center;
+}
+
+/* Additional features! */
+
+.editTask__title {
+    text-align: center;
+    width: 560px;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+/* Contact! */
+
+.contact {
+    padding: 50px 0px;
+    text-align: center;
+}
+.contact__text {
+    width: 560px;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+.contact__phoneNumber {
+    border-bottom: 1px solid #FFF;
+    width: min-content;
+    margin: 0 auto;
+}
+
+/* Footer! */
+
+.footer {
+    display: flex;
+    padding: 100px 0px;
+}
+.checkMark {
+    margin: 0 auto;
 }
