@@ -1,0 +1,14 @@
+.active img, .gradient img {
+    width: 75px;
+    height: 75px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.active img {
+    border: 2px solid black;
+}
+.gradient img {
+    border: 2px solid silver;
+}

@@ -1,3 +1,12 @@
+import background_gradient1 from '../../images/backgrounds/background_1.png'
+import background_gradient2 from '../../images/backgrounds/background_2.png'
+import background_gradient3 from '../../images/backgrounds/background_3.png'
+import background_gradient4 from '../../images/backgrounds/background_4.png'
+import background_gradient5 from '../../images/backgrounds/background_5.png'
+import background_gradient6 from '../../images/backgrounds/background_6.png'
+import background_gradient7 from '../../images/backgrounds/background_7.png'
+import background_gradient8 from '../../images/backgrounds/background_8.png'
+
 const ADD_TASK = 'ADD-TASK'
 const DONE_TASK = 'DONE-TASK'
 const DELETE_TASK = 'DELETE-TASK'
@@ -13,6 +22,9 @@ const CHOOSE_DONE_TASKS = 'CHOOSE_DONE_TASKS'
 
 const FILTER_ACTIVE_TASKS = 'FILTER_ACTIVE_TASKS'
 const FILTER_DONE_TASKS = 'FILTER_DONE_TASKS'
+
+const SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS = 'SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS'
+const SET_BACKGROUND = 'SET_BACKGROUND'
 
 const todolist = {
     tasks: [
@@ -41,17 +53,65 @@ const todolist = {
     isActiveTasks: false,
     isDoneTasks: false,
     cashTasks: [],
-    errorEditText: 'Untitled'
+    errorEditText: 'Untitled',
+    isBackgroundModalActive: false,
+    backgrounds: [
+        {
+            id: 1,
+            src: background_gradient1,
+            chosen: true,
+            styleBackground: 'linear-gradient(to right, #7CB9E8, #4F8CBB)'
+        },
+        {
+            id: 2,
+            src: background_gradient2,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #222222, #000)'
+        },
+        {
+            id: 3,
+            src: background_gradient3,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #FFF, #C7C7C7)'
+        },
+        {
+            id: 4,
+            src: background_gradient4,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #00FF00, #008080)'
+        },
+        {
+            id: 5,
+            src: background_gradient5,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #4E2458, #DB65F9)'
+        },
+        {
+            id: 6,
+            src: background_gradient6,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #DDFF6F, #66DDAA)'
+        },
+        {
+            id: 7,
+            src: background_gradient7,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #FF6C64, #D96200)'
+        },
+        {
+            id: 8,
+            src: background_gradient8,
+            chosen: false,
+            styleBackground: 'linear-gradient(to right, #0048BA, #008080)'
+        }
+    ]
 }
 
 const reducerTodo = (state = todolist, action) => {
-    const stateCopy = { ...state }
-    stateCopy.tasks = [...state.tasks]
-
     switch (action.type) {
         case ADD_TASK:
             const newTask = {
-                id: stateCopy.tasks.length + 1,
+                id: state.tasks.length + 1,
                 title: action.taskTitle,
                 done: false,
                 isEdit: false
@@ -77,7 +137,7 @@ const reducerTodo = (state = todolist, action) => {
         case DELETE_ALL_TASKS:
             return {
                 ...state,
-                cashTasks: stateCopy.tasks.length > 0 && [...state.tasks],
+                cashTasks: state.tasks.length > 0 && [...state.tasks],
                 tasks: []
             }
         case RETURN_DELETED_TASKS:
@@ -141,6 +201,19 @@ const reducerTodo = (state = todolist, action) => {
                 ...state,
                 doneTasks: state.tasks.filter(task => task.done && true)
             }
+        case SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS:
+            return {
+                ...state,
+                isBackgroundModalActive: action.modalStatus
+            } 
+        case SET_BACKGROUND:
+            return {
+                ...state,
+                backgrounds: state.backgrounds.map(background => {
+                    if(background.id === action.backgroundId) return { ...background, chosen: true }
+                    return { ...background, chosen: false } 
+                })
+            }     
         default:
             return state
     }
@@ -161,5 +234,7 @@ export const chooseActiveTasks = () => ({ type: CHOOSE_ACTIVE_TASKS })
 export const chooseDoneTasks = () => ({ type: CHOOSE_DONE_TASKS })
 export const filterActiveTasks = () => ({ type: FILTER_ACTIVE_TASKS })
 export const filterDoneTasks = () => ({ type: FILTER_DONE_TASKS })
+export const setIsBackgroundModalActiveStatus = (modalStatus) => ({ type: SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS, modalStatus })
+export const setBackground = (backgroundId) => ({ type: SET_BACKGROUND, backgroundId })
 
 export default reducerTodo

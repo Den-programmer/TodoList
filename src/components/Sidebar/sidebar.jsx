@@ -3,6 +3,7 @@ import classes from './sidebar.module.css'
 import { NavLink } from 'react-router-dom'
 import Radium, { StyleRoot } from 'radium'
 import { fadeInLeft, fadeOutLeft } from 'react-animations'
+import BackgroundModalContainer from '../Background/backgroundModalContainer'
 
 const Sidebar = (props) => {
     const style = {
@@ -22,6 +23,8 @@ const Sidebar = (props) => {
         props.filterDoneTasks()
     }
     const chooseAllTasks = () => props.chooseAllTasks() 
+
+    const openModal = () => props.setIsBackgroundModalActiveStatus(true)
     return (
         <div className={classes.rootFragment}>
             {props.isMenuActive && <StyleRoot>
@@ -44,22 +47,23 @@ const Sidebar = (props) => {
                                 <h4>Tasks Filter</h4>
                                 <div className={classes.horizontal_line}></div>
                                 <ul className={classes.list}>
-                                    <li className={props.isActiveTasks && classes.active} onClick={chooseActiveTasks}>Active Tasks</li>
-                                    <li className={props.isDoneTasks && classes.active} onClick={chooseDoneTasks}>Done Tasks</li>
-                                    <li className={props.isAllTasks && classes.active} onClick={chooseAllTasks}>All Tasks</li>
+                                    <li className={props.isActiveTasks ? classes.active : ''} onClick={chooseActiveTasks}>Active Tasks</li>
+                                    <li className={props.isDoneTasks ? classes.active : ''} onClick={chooseDoneTasks}>Done Tasks</li>
+                                    <li className={props.isAllTasks ? classes.active : ''} onClick={chooseAllTasks}>All Tasks</li>
                                 </ul>
                             </div>
                             <div className={classes.otherOptions}>
                                 <h4>Other options</h4>
                                 <div className={classes.horizontal_line}></div>
                                 <ul className={classes.otherOptionsList + ' ' + classes.list}>
-                                    <li>Background</li>
+                                    <li onClick={openModal}>Background</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </StyleRoot>}
+            {props.isBackgroundModalActive && <BackgroundModalContainer />}
         </div>
     )
 }

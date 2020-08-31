@@ -1,3 +1,6 @@
+.todoWrapper {
+    min-height: 100vh;
+}
 .container {
     display: flex;
     align-items: flex-start;
