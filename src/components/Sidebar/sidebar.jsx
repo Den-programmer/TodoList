@@ -35,7 +35,7 @@ const Sidebar = (props) => {
                                 <ul className={classes.list + ' ' + classes.generalOptionsList}>
                                     <li><NavLink to="/">Home</NavLink></li>
                                     <li><NavLink to="/aboutUS">About Us</NavLink></li>
-                                    <li><NavLink to="/contact">Contact</NavLink></li>
+                                    <li><a href="#contact">Contacts</a></li>
                                     {/* <li><a href="portfolio">Portfolio</a></li> */}
                                 </ul>
                             </div>

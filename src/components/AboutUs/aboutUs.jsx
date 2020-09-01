@@ -73,7 +73,7 @@ const AboutUs = ({ isAuth }) => {
                     </div>
                 </div>
             </section>
-            <section className={classes.contact}>
+            <section id="contact" className={classes.contact}>
                 <h2>Contact Us</h2>
                 <p className={classes.contact__text}>
                     If you want to help developers find errors in the application or give advice,
