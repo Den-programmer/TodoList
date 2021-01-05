@@ -27,6 +27,8 @@ const FILTER_DONE_TASKS = 'FILTER_DONE_TASKS'
 const SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS = 'SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS'
 const SET_BACKGROUND = 'SET_BACKGROUND'
 
+const SET_FILTTER_TERM = 'SET_FILTTER_TERM'
+
 const todolist = {
     tasks: [
         {
@@ -105,7 +107,10 @@ const todolist = {
             chosen: false,
             styleBackground: 'linear-gradient(to right, #0048BA, #008080)'
         }
-    ]
+    ],
+    filter: {
+        term: ''
+    }
 }
 
 const reducerTodo = (state = todolist, action) => {
@@ -221,7 +226,12 @@ const reducerTodo = (state = todolist, action) => {
                 tasks: state.tasks.map(item => {
                     return { ...item, isEdit: false }
                 })
-            }        
+            }  
+        case SET_FILTTER_TERM:
+            return {
+                ...state,
+                filter: { ...state.filtter, term: action.term }
+            }          
         default:
             return state
     }
@@ -245,5 +255,6 @@ export const filterActiveTasks = () => ({ type: FILTER_ACTIVE_TASKS })
 export const filterDoneTasks = () => ({ type: FILTER_DONE_TASKS })
 export const setIsBackgroundModalActiveStatus = (modalStatus) => ({ type: SET_IS_BACKGROUND_MODAL_ACTIVE_STATUS, modalStatus })
 export const setBackground = (backgroundId) => ({ type: SET_BACKGROUND, backgroundId })
+export const setFilterTerm = (term) => ({ type: SET_FILTTER_TERM, term })
 
 export default reducerTodo

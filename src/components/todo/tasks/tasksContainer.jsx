@@ -11,7 +11,8 @@ const mapStateToProps = (state) => ({
     isActiveTasks: state.todolist.isActiveTasks,
     isDoneTasks: state.todolist.isDoneTasks,
     activeTasks: state.todolist.activeTasks,
-    doneTasks: state.todolist.doneTasks 
+    doneTasks: state.todolist.doneTasks,
+    term: state.todolist.filter.term
 })
 
 const TasksContainer = connect(mapStateToProps, { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask, finishEditing })(Tasks)

@@ -5,6 +5,9 @@ class HeaderTodo extends React.Component {
     componentDidMount() {
         this.props.authentication()
     }
+    onSearchChange = (e) => {
+        this.props.setFilterTerm(e.currentTarget.value)
+    }
     render() {
         return (
             <header>
@@ -13,7 +16,7 @@ class HeaderTodo extends React.Component {
                         <h1 title="Best wishes your TodoList!">TodoList</h1>
                     </div>
                     <div className={classes.search}>
-                        <input title="Search!" className={classes.input} type="text" placeholder="Search..."/>
+                        <input title="Search!" onChange={this.onSearchChange} className={classes.input} type="text" placeholder="Search..."/>
                     </div>
                 </div>
             </header>
