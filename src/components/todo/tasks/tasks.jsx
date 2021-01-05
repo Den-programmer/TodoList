@@ -23,7 +23,7 @@ const Tasks = (props) => {
                 deleteTask={props.deleteTask} />
         })
     }
-    
+
     const tasks = createTasks(props.tasks)
     const activeTasks = createTasks(props.activeTasks)
     const doneTasks = createTasks(props.doneTasks)
@@ -34,7 +34,6 @@ const Tasks = (props) => {
             {props.isAllTasks ? tasks.length !== 0 ? tasks : noTasks : null}
             {props.isActiveTasks ? activeTasks.length !== 0 ? activeTasks : noTasks : null} 
             {props.isDoneTasks ? doneTasks.length !== 0 ? doneTasks : noTasks : null}
-            
         </div>
     )
 }
