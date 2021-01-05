@@ -4,30 +4,37 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
 
 const Task = (props) => {   
-    let doneTask = () => {
+    const taskRef = React.createRef();
+    const doneTask = () => {
         props.doneTask(props.id);
     }
 
-    let deleteTask = () => {
+    const deleteTask = () => {
         props.deleteTask(props.id);
     }
 
-    let editTask = () => {
+    const editTask = () => {
         props.editTasks(props.id);
     }
 
-    let finishEditTask = (e) => {
+    const finishEditTask = (e) => {
         let taskValue = e.currentTarget.value;
         props.finishEditTasks(props.id, taskValue);
     }
 
-    let onEditInputChange = (e) => {
+    const onEditInputChange = (e) => {
         let taskValue = e.currentTarget.value;
         props.onEditInputChange(taskValue, props.id);
     }
 
+    document.addEventListener('click', e => {
+        if(taskRef.current && !taskRef.current.contains(e.target)) {
+            props.finishEditing();
+        }
+    });
+
     return (
-        <div id={props.id} className={classes.task}>
+        <div ref={taskRef} id={props.id} className={classes.task}>
             <div className={classes.title}>
             {props.isEdit ? <input autoFocus={true} 
                                    onChange={ onEditInputChange } 

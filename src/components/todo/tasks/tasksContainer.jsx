@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import Tasks from './tasks'
-import { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask } from '../../../BLL/reducers/reducerTodo'
+import { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask, finishEditing } from '../../../BLL/reducers/reducerTodo'
 
 
 const mapStateToProps = (state) => ({
@@ -14,6 +14,6 @@ const mapStateToProps = (state) => ({
     doneTasks: state.todolist.doneTasks 
 })
 
-const TasksContainer = connect(mapStateToProps, { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask })(Tasks)
+const TasksContainer = connect(mapStateToProps, { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask, finishEditing })(Tasks)
 
 export default TasksContainer

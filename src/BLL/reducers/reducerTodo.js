@@ -14,6 +14,7 @@ const DELETE_ALL_TASKS = 'DELETE_ALL_TASKS'
 const RETURN_DELETED_TASKS = 'RETURN_DELETED_TASKS'
 const EDIT_TASKS = 'EDIT_TASKS'
 const FINISH_EDITING_TASKS = 'FINISH_EDITING_TASKS'
+const FINISH_EDITING = 'FINISH_EDITING'
 const ON_EDIT_INPUT_CHANGE = 'ON_EDIT_INPUT_CHANGE'
 
 const CHOOSE_ALL_TASKS = 'CHOOSE_ALL_TASKS'
@@ -213,7 +214,14 @@ const reducerTodo = (state = todolist, action) => {
                     if(background.id === action.backgroundId) return { ...background, chosen: true }
                     return { ...background, chosen: false } 
                 })
-            }     
+            } 
+        case FINISH_EDITING:
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    return { ...item, isEdit: false }
+                })
+            }        
         default:
             return state
     }
@@ -228,6 +236,7 @@ export const deleteAllTasks = () => ({ type: DELETE_ALL_TASKS })
 export const returnDeletedTasks = () => ({ type: RETURN_DELETED_TASKS })
 export const editTasks = (taskId) => ({ type: EDIT_TASKS, taskId })
 export const finishEditTasks = (taskId, taskValue) => ({ type: FINISH_EDITING_TASKS, taskId, taskValue })
+export const finishEditing = () => ({ type: FINISH_EDITING })
 export const onEditInputChange = (taskValue, taskId) => ({ type: ON_EDIT_INPUT_CHANGE, taskValue, taskId })
 export const chooseAllTasks = () => ({ type: CHOOSE_ALL_TASKS })
 export const chooseActiveTasks = () => ({ type: CHOOSE_ACTIVE_TASKS })
