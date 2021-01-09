@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/TodoList/static/css/main.9d5ef643.chunk.css",
+    "main.js": "/TodoList/static/js/main.32f5329a.chunk.js",
+    "main.js.map": "/TodoList/static/js/main.32f5329a.chunk.js.map",
+    "runtime-main.js": "/TodoList/static/js/runtime-main.35ad5b3c.js",
+    "runtime-main.js.map": "/TodoList/static/js/runtime-main.35ad5b3c.js.map",
+    "static/js/2.8108d42a.chunk.js": "/TodoList/static/js/2.8108d42a.chunk.js",
+    "static/js/2.8108d42a.chunk.js.map": "/TodoList/static/js/2.8108d42a.chunk.js.map",
+    "index.html": "/TodoList/index.html",
+    "precache-manifest.5f53976561d91e19f4af2cb503561794.js": "/TodoList/precache-manifest.5f53976561d91e19f4af2cb503561794.js",
+    "service-worker.js": "/TodoList/service-worker.js",
+    "static/css/main.9d5ef643.chunk.css.map": "/TodoList/static/css/main.9d5ef643.chunk.css.map",
+    "static/js/2.8108d42a.chunk.js.LICENSE.txt": "/TodoList/static/js/2.8108d42a.chunk.js.LICENSE.txt",
+    "static/media/background_1.png": "/TodoList/static/media/background_1.ab21f4b0.png",
+    "static/media/background_2.png": "/TodoList/static/media/background_2.39a8c6af.png",
+    "static/media/background_3.png": "/TodoList/static/media/background_3.60ec3594.png",
+    "static/media/background_4.png": "/TodoList/static/media/background_4.821a316f.png",
+    "static/media/background_5.png": "/TodoList/static/media/background_5.757e3307.png",
+    "static/media/background_6.png": "/TodoList/static/media/background_6.4b859f20.png",
+    "static/media/background_7.png": "/TodoList/static/media/background_7.fdde3701.png",
+    "static/media/background_8.png": "/TodoList/static/media/background_8.cf599cba.png",
+    "static/media/backgrounds.jpg": "/TodoList/static/media/backgrounds.c8dc41d3.jpg",
+    "static/media/editTodoTasks.png": "/TodoList/static/media/editTodoTasks.846dc009.png",
+    "static/media/menu.jpg": "/TodoList/static/media/menu.1e33fae6.jpg",
+    "static/media/myTodolist.png": "/TodoList/static/media/myTodolist.34151ba1.png",
+    "static/media/sadSmile.png": "/TodoList/static/media/sadSmile.2d931898.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35ad5b3c.js",
+    "static/js/2.8108d42a.chunk.js",
+    "static/css/main.9d5ef643.chunk.css",
+    "static/js/main.32f5329a.chunk.js"
+  ]
+}
