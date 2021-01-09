@@ -24,14 +24,15 @@ class App extends React.Component {
     if (prevProps.backgrounds !== this.props.backgrounds) this.setStateValue()
   }
   render() {
+    const menuCheckout = this.props.isMenuActive ? classes.activeContainer : classes.container
     return (
       <div className="App" style={{ background: this.state.styleBackground }}>
         <div className={classes.todoWrapper}>
           <Switch>
-            <Route path="/aboutUS" render={() => (<><HeaderContainer /><div className={classes.container}><SidebarContainer /><AboutUsContainer /></div></>)} />
+            <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><SidebarContainer /><div className={menuCheckout}><HeaderContainer /><AboutUsContainer /></div></div>)} />
             <Route path="/login" render={() => (<LoginContainer />)} />
             <Route exact path="/" render={() => (this.props.isAuth ?
-              <><HeaderContainer /><div className={classes.container}><SidebarContainer /><Todo /></div></> :
+              <div className={classes.dFlexContainer}><SidebarContainer /><div className={menuCheckout}><HeaderContainer /><Todo /></div></div> :
               <LoginContainer />)} />
           </Switch>
         </div>
@@ -42,7 +43,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
-  backgrounds: state.todolist.backgrounds
+  backgrounds: state.todolist.backgrounds,
+  isMenuActive: state.sidebar.isMenuActive
 })
 
 const AppContainer = connect(mapStateToProps, {  })(App)

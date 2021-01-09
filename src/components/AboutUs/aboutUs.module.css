@@ -84,6 +84,16 @@
     padding: 20px 0px;
 }
 
+.editTasksImg  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.editTasksImg img {
+    width: 85%;
+}
+
 /* Contact! */
 
 .contact {
@@ -96,8 +106,9 @@
     padding: 20px 0px;
 }
 .contact__phoneNumber {
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid #F50057;
     width: min-content;
+    color: #F50057 !important;
     margin: 0 auto;
 }
 
