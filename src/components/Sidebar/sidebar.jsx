@@ -1,36 +1,13 @@
 import React from 'react'
 import classes from './sidebar.module.css'
-// import  Radium, { StyleRoot } from 'radium'
-// import { fadeInLeft } from 'react-animations'
 import { NavLink } from 'react-router-dom'
 import BackgroundModalContainer from '../Background/backgroundModalContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Sidebar = (props) => {
-    // const style = {
-    //     animation: 'x 1s',
-    //     animationName: Radium.keyframes(fadeInLeft, 'fadeInLeft')
-    // }
-
-    // const chooseActiveTasks = () => {
-    //     props.chooseActiveTasks()
-    //     props.filterActiveTasks()
-    // }
-    // const chooseDoneTasks = () => {
-    //     props.chooseDoneTasks()
-    //     props.filterDoneTasks()
-    // }
-    // const chooseAllTasks = () => props.chooseAllTasks()
-
     const commonListItemStyle = { color: 'rgba(255, 255, 255, 0.6)' }
     const hoveredListItemStyle = { color: '#FFF' }
-
-
-    // <li><a href="portfolio">Portfolio</a></li> 
-    // <li className={props.isActiveTasks ? classes.active : ''} onClick={chooseActiveTasks}>Active Tasks</li>
-    // <li className={props.isDoneTasks ? classes.active : ''} onClick={chooseDoneTasks}>Done Tasks</li>
-    // <li className={props.isAllTasks ? classes.active : ''} onClick={chooseAllTasks}>All Tasks</li>
-
+    
     const menuItems = props.menu.map(item => {
         const listIcon = <div className={classes.listIconWrapper}>
             <FontAwesomeIcon className={classes.listIcon} style={item.isHovered ? hoveredListItemStyle : commonListItemStyle} icon={item.icon} />
