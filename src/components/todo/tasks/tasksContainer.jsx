@@ -1,20 +1,32 @@
+import React from 'react'
 import { connect } from "react-redux"
 import Tasks from './tasks'
-import { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask, finishEditing } from '../../../BLL/reducers/reducerTodo'
+import { onEditInputChange, dlTask, editTasks, updateEditedTask, updateDoneTask, finishEditing, requestTasks } from '../../../BLL/reducers/reducerTodo'
 
 
 const mapStateToProps = (state) => ({
-    searchTasksStyles: state.todolist.searchTasksStyles,
     tasks: state.todolist.tasks,
     errorEditText: state.todolist.errorEditText,
     isAllTasks: state.todolist.isAllTasks,
     isActiveTasks: state.todolist.isActiveTasks,
     isDoneTasks: state.todolist.isDoneTasks,
-    activeTasks: state.todolist.activeTasks,
-    doneTasks: state.todolist.doneTasks,
     term: state.todolist.filter.term
 })
 
-const TasksContainer = connect(mapStateToProps, { onEditInputChange, deleteTask, editTasks, finishEditTasks, doneTask, finishEditing })(Tasks)
+class TasksContainer extends React.Component {
+    componentDidMount() {
+        this.props.requestTasks()
+    }
+   render() {
+       return <Tasks tasks={this.props.tasks} 
+       errorEditText={this.props.errorEditText} isAllTasks={this.props.isAllTasks} isActiveTasks={this.props.isActiveTasks} 
+       isDoneTasks={this.props.isDoneTasks} activeTasks={this.props.activeTasks} doneTasks={this.props.doneTasks} term={this.props.term}
+       onEditInputChange={this.props.onEditInputChange} deleteTask={this.props.dlTask} editTasks={this.props.editTasks} 
+       finishEditTasks={this.props.updateEditedTask} updateDoneTask={this.props.updateDoneTask} finishEditing={this.props.finishEditing}/>
+   }
+}
 
-export default TasksContainer
+const TasksConnected = connect(mapStateToProps, 
+    { onEditInputChange, dlTask, editTasks, updateEditedTask, updateDoneTask, finishEditing, requestTasks })(TasksContainer)
+
+export default TasksConnected

@@ -5,7 +5,7 @@ import loginLogo from '../../../images/others/loginForm_image.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, setIsRegisterStatus, isRegister, error }) => {
     const [isPasswordHidden, setIsPasswordHiddenStatus] = useState(true)
     const hidePassword = () => setIsPasswordHiddenStatus(true)
     const showPassword = () => setIsPasswordHiddenStatus(false)
@@ -54,15 +54,15 @@ const LoginForm = ({ handleSubmit, error }) => {
                     <Field onFocus={onPasswordFocus} onBlur={onPasswordBlur} type={isPasswordHidden ? "password" : "text"} component="input" name="password" className={classes.inputs} />
                     <span style={passwordPlaceholderStyle} ref={passwordPlaceholder} className={classes.animation_line} data-placeholder="Password"></span>
                 </div>
-                <div className={classes.rememberMe}>
-                    <Field type="checkbox" component="input" name="rememberMe" />
-                    <p>Remember Me</p>
-                </div>
                 {error && <div className={classes.error}>
                     <span>{error}</span>
                 </div>}
                 <div className={classes.btn_login}>
-                    <button>Login</button>
+                    <button>{isRegister ? 'Register' : 'Login'}</button>
+                </div>
+                <div className={classes.hasAccount}>
+                    {isRegister ? <p className={classes.hasAccountText} onClick={() => setIsRegisterStatus(false)}>Already has account? Try to login!</p> :
+                    <p className={classes.hasAccountText} onClick={() => setIsRegisterStatus(true)}>Still don't have account? Try to register!</p>}
                 </div>
             </form>
         </div>

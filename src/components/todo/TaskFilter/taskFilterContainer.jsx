@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import TaskFilter from './taskFilter'
-import { chooseAllTasks, chooseActiveTasks, chooseDoneTasks, filterActiveTasks, filterDoneTasks } from '../../../BLL/reducers/reducerTodo'
+import { chooseAllTasks, chooseActiveTasks, chooseDoneTasks } from '../../../BLL/reducers/reducerTodo'
 
 const mapStateToProps = (state) => ({
     isAllTasks: state.todolist.isAllTasks,
@@ -9,6 +9,6 @@ const mapStateToProps = (state) => ({
 })
 
 const TaskFilterContainer = connect(mapStateToProps, 
-    { chooseAllTasks, chooseActiveTasks, chooseDoneTasks, filterActiveTasks, filterDoneTasks, })(TaskFilter)
+    { chooseAllTasks, chooseActiveTasks, chooseDoneTasks })(TaskFilter)
 
 export default TaskFilterContainer

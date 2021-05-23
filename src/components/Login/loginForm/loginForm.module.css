@@ -196,3 +196,14 @@
     transition: all 0.7s ease;
     background: linear-gradient( to right, #b721ff, #21d4fd);
 }
+
+.hasAccount {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.hasAccountText {
+    color: red;
+    font-size: 12px;
+    cursor: pointer;
+}

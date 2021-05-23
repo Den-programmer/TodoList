@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import Login from './login'
-import { login, authentication } from '../../BLL/reducers/reducerAuth'
+import { login, createAccount, setIsRegisterStatus } from '../../BLL/reducers/reducerAuth'
 
 const mapStateToProps = (state) => ({
-    rememberMe: state.auth.rememberMe
+    rememberMe: state.auth.rememberMe,
+    isRegister: state.auth.isRegister
 })
 
-const LoginContainer = connect(mapStateToProps, { login, authentication })(Login)
+const LoginContainer = connect(mapStateToProps, { login, createAccount, setIsRegisterStatus })(Login)
 
 export default LoginContainer

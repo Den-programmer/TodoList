@@ -1,9 +1,9 @@
-import React from 'react';
-import classes from './todo.module.css';
-import TasksContainer from './tasks/tasksContainer';
-import HeaderTodoContainer from './HeaderTodo/headerTodoContainer';
-import AddTaskContainer from './AddTask/addTaskContainer';
-import TaskFilterContainer from './TaskFilter/taskFilterContainer';
+import React from 'react'
+import classes from './todo.module.css'
+import TasksContainer from './tasks/tasksContainer'
+import HeaderTodoContainer from './HeaderTodo/headerTodoContainer'
+import AddTaskContainer from './AddTask/addTaskContainer'
+import TaskFilterContainer from './TaskFilter/taskFilterContainer'
 
 const Todo = (props) => {
     return (
@@ -13,7 +13,7 @@ const Todo = (props) => {
             <TasksContainer />
             <AddTaskContainer />
         </div>
-    );
+    )
 }
 
-export default Todo;
+export default Todo

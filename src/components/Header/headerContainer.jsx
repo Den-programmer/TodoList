@@ -2,8 +2,8 @@ import { connect } from 'react-redux'
 import Header from './header'
 import { setMenuStatus } from '../../BLL/reducers/reducerSidebar'
 import { logout } from '../../BLL/reducers/reducerAuth'
- 
-let mapStateToProps = (state) => ({
+
+const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     isMenuActive: state.sidebar.isMenuActive
 })

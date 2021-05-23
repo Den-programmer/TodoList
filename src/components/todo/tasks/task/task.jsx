@@ -1,37 +1,37 @@
-import React from 'react';
-import classes from './task.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import classes from './task.module.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCheckSquare, faWindowClose} from '@fortawesome/free-solid-svg-icons'
 
 const Task = (props) => {   
-    const taskRef = React.createRef();
+    const taskRef = React.createRef()
     const doneTask = () => {
-        props.doneTask(props.id);
+        props.updateDoneTask(props.id)
     }
 
     const deleteTask = () => {
-        props.deleteTask(props.id);
+        props.deleteTask(props.id)
     }
 
     const editTask = () => {
-        props.editTasks(props.id);
+        props.editTasks(props.id)
     }
 
     const finishEditTask = (e) => {
-        let taskValue = e.currentTarget.value;
-        props.finishEditTasks(props.id, taskValue);
+        let taskValue = e.currentTarget.value
+        props.finishEditTasks(props.id, taskValue)
     }
 
     const onEditInputChange = (e) => {
-        let taskValue = e.currentTarget.value;
-        props.onEditInputChange(taskValue, props.id);
+        let taskValue = e.currentTarget.value
+        props.onEditInputChange(taskValue, props.id)
     }
 
     document.addEventListener('click', e => {
         if(taskRef.current && !taskRef.current.contains(e.target)) {
-            props.finishEditing();
+            props.finishEditing()
         }
-    });
+    })
 
     return (
         <div ref={taskRef} id={props.id} className={classes.task}>
@@ -56,7 +56,7 @@ const Task = (props) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Task;
+export default Task

@@ -1,7 +1,7 @@
-import React from 'react';
-import classes from './addTask.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import classes from './addTask.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faUndo } from '@fortawesome/free-solid-svg-icons'
 
 class AddTask extends React.Component {
     state = {
@@ -16,20 +16,20 @@ class AddTask extends React.Component {
         if (this.state.taskTitle === '') {
             this.setState({
                 error: true
-            });
+            })
         } else {
             this.setState({
                 error: false,
                 taskTitle: '' 
-            });
-            this.props.addTask(this.state.taskTitle);
+            })
+            this.props.updateAddedTask(this.state.taskTitle)
         }
     }
 
     onTaskTitleChange = (e) => {
         this.setState({
             taskTitle: e.currentTarget.value
-        });
+        })
     }
 
     deleteAllTasks = () => {
@@ -37,16 +37,16 @@ class AddTask extends React.Component {
             undo: {
                 display: 'block'
             }
-        });
-        this.props.deleteAllTasks();
+        })
+        this.props.updateDeletedAllTasks()
     }
     returnPrevTasks = () => {
         this.setState({
             undo: {
                 display: 'none'
             }
-        });
-        this.props.returnDeletedTasks();
+        })
+        this.props.updateUndoDeletedTasks()
     }
     render() {
         return (
@@ -86,8 +86,8 @@ class AddTask extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default AddTask;
+export default AddTask

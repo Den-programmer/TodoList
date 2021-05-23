@@ -1,27 +1,23 @@
 import React from 'react'
 import classes from './headerTodo.module.css'
 
-class HeaderTodo extends React.Component {
-    componentDidMount() {
-        this.props.authentication()
+const HeaderTodo = (props) => {
+    const onSearchChange = (e) => {
+        props.setFilterTerm(e.currentTarget.value)
     }
-    onSearchChange = (e) => {
-        this.props.setFilterTerm(e.currentTarget.value)
-    }
-    render() {
-        return (
-            <header>
-                <div className={classes.container}>
-                    <div className={classes.title}>
-                        <h1 title="Best wishes your TodoList!">TodoList</h1>
-                    </div>
-                    <div className={classes.search}>
-                        <input title="Search!" onChange={this.onSearchChange} className={classes.input} type="text" placeholder="Search..."/>
-                    </div>
+
+    return (
+        <header>
+            <div className={classes.container}>
+                <div className={classes.title}>
+                    <h1 title="Best wishes your TodoList!">TodoList</h1>
                 </div>
-            </header>
-        )
-    }
+                <div className={classes.search}>
+                    <input title="Search!" onChange={onSearchChange} className={classes.input} type="text" placeholder="Search..." />
+                </div>
+            </div>
+        </header>
+    )
 }
 
 export default HeaderTodo

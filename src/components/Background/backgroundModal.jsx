@@ -5,7 +5,7 @@ import BackgroundItem from './BackgroundItem/backgroundItem'
 
 const BackgroundModal = (props) => {
     const backgrounds = props.backgrounds.map(background => {
-        return <BackgroundItem key={background.id} id={background.id} src={background.src} chosen={background.chosen} setBackground={props.setBackground}/>
+        return <BackgroundItem key={background.id} id={background.id} src={background.src} chosen={background.chosen} setBackground={props.updateBackground}/>
     })
     const confirmBackground = () => props.setIsBackgroundModalActiveStatus(false) 
     return (

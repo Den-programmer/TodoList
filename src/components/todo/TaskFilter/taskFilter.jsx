@@ -4,11 +4,9 @@ import classes from './taskFilter.module.css'
 const TaskFilter = (props) => {
      const chooseActiveTasks = () => {
         props.chooseActiveTasks()
-        props.filterActiveTasks()
     }
     const chooseDoneTasks = () => {
         props.chooseDoneTasks()
-        props.filterDoneTasks()
     }
     const chooseAllTasks = () => props.chooseAllTasks()
     

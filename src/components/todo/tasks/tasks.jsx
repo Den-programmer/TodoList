@@ -4,36 +4,41 @@ import Task from './task/task'
 import sadSmile from '../../../images/Smiles/sadSmile.png'
 
 const Tasks = (props) => {
-    const createTasks = (tasks) => {
-        return tasks.filter((item) => {
+    const createTasks = (tasks, stringCode) => {
+        const searchedTasks = tasks.filter((item) => {
             if(props.term !== '') {
                 if(item.title.indexOf(props.term) > -1) return true
             } else {
                 return true
             }
-        }).map(task => {
-            return <Task finishEditing={props.finishEditing} onEditInputChange={props.onEditInputChange}
+        })
+        const filteredTasks = stringCode === 'tasks' ? searchedTasks 
+        : stringCode === 'active' ? searchedTasks.filter(item => !item.done && true) : 
+        searchedTasks.filter(item => item.done && true)
+        return filteredTasks.map(task => {
+            return <Task finishEditing={props.finishEditing} updateDoneTask={props.updateDoneTask} 
+                onEditInputChange={props.onEditInputChange}
                 isEdit={task.isEdit}
                 errorEditText={props.errorEditText}
                 editTasks={props.editTasks}
                 finishEditTasks={props.finishEditTasks}
                 key={task.id} id={task.id}
                 title={task.title}
-                done={task.done} doneTask={props.doneTask}
+                done={task.done}
                 deleteTask={props.deleteTask} />
         })
     }
 
-    const tasks = createTasks(props.tasks)
-    const activeTasks = createTasks(props.activeTasks)
-    const doneTasks = createTasks(props.doneTasks)
+    const tasks = createTasks(props.tasks, 'tasks')
+    const activeTasks = createTasks(props.tasks, 'active')
+    const doneTasks = createTasks(props.tasks, 'done')
 
     const noTasks = <div className={classes.noTasks}><h2 className={classes.titleNoTasks}>You do not have any tasks!</h2><img src={sadSmile} alt="sad smile" /></div>
     return (
         <div className={classes.tasks}>
-            {props.isAllTasks ? tasks.length !== 0 ? tasks : noTasks : null}
-            {props.isActiveTasks ? activeTasks.length !== 0 ? activeTasks : noTasks : null} 
-            {props.isDoneTasks ? doneTasks.length !== 0 ? doneTasks : noTasks : null}
+            {props.isAllTasks ? tasks.length === 0 ? noTasks : tasks 
+            : props.isActiveTasks ? activeTasks.length === 0 ? noTasks : activeTasks 
+            : doneTasks.length === 0 ? noTasks : doneTasks}
         </div>
     )
 }

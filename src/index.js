@@ -5,7 +5,9 @@ import App from './App'
 import store from './BLL/redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app' 
+import 'firebase/auth'
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDioGV7RWVAH2K-QMx26QVIcRfbwSWGAVQ",
@@ -19,7 +21,6 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
-firebase.analitics()
 
 ReactDOM.render(<BrowserRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>

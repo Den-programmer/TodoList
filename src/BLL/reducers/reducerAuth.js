@@ -1,14 +1,16 @@
-import { AuthAPI } from "../../DAL/api"
+import firebase from 'firebase'
 import { stopSubmit } from 'redux-form'
 
 const AUTH = 'AUTH'
+const SET_IS_REGISTER_STATUS = 'SET_IS_REGISTER_STATUS'
 
 const auth = {
     userId: null,
     email: null,
     login: null,
     rememberMe: false,
-    isAuth: false
+    isAuth: false,
+    isRegister: false
 }
 
 const reducerAuth = (state = auth, action) => {
@@ -22,6 +24,11 @@ const reducerAuth = (state = auth, action) => {
                 isAuth: action.isAuth,
                 userId: action.userId
             }
+        case SET_IS_REGISTER_STATUS:
+            return {
+                ...state,
+                isRegister: action.status
+            }  
         default:
             return state
     }
@@ -29,28 +36,36 @@ const reducerAuth = (state = auth, action) => {
 
 // Action Creators!
 
-const authAC = (email, rememberMe, userId, isAuth) => ({ type: AUTH, email, rememberMe, userId, isAuth })
+export const authentication = (email, rememberMe, userId, isAuth) => ({ type: AUTH, email, rememberMe, userId, isAuth })
 
+export const setIsRegisterStatus = (status) => ({ type: SET_IS_REGISTER_STATUS, status })
+ 
 // Thunk Creators!
 
-export const authentication = (rememberMe = false) => async (dispatch) => {
-    const data = await AuthAPI.auth()
-    if (data.resultCode === 0) dispatch(authAC(data.email, rememberMe, data.userId, true))
+export const createAccount = (email, password) => (dispatch) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(res => {
+        let userId = firebase.auth().currentUser.uid
+        dispatch(authentication(email, false, userId, true))
+    }).catch((error) => {
+        let action = stopSubmit('login', { _error: error.message })
+        dispatch(action)
+    })
 }
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
-    const data = await AuthAPI.login(email, password, rememberMe)
-    if(data.resultCode === 0) {
-        dispatch(authentication(rememberMe))
-    } else {
-        const message = data.messages[0]
-        dispatch(stopSubmit('login', {_error: message}))
-    }
-}
-export const logout = () => async (dispatch) => {
-    const data = await AuthAPI.logout()
-    if(data.resultCode === 0) dispatch(authAC(null, false, null, false))
+export const login = (email, password) => (dispatch) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
+        let userId = firebase.auth().currentUser.uid
+        dispatch(authentication(email, false, userId, true))
+    }).catch(error => {
+        let action = stopSubmit('login', { _error: error.message })
+        dispatch(action)
+    })
 }
 
+export const logout = () => (dispatch) => {
+    firebase.auth().signOut().then(() => {
+        dispatch(authentication(null, false, null, false))
+    })
+}
 
 export default reducerAuth
