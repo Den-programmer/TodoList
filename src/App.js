@@ -25,18 +25,16 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(prevProps.backgrounds !== this.props.backgrounds) this.setStateValue()
-  }
-  todoCheckout = this.props.isMenuActive ? classes.activeContainer : classes.container   
-  menuCheckout = this.props.isMenuActive ? classes.activeMenu : classes.menuContainer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
   render() {
     return (
       <div className="App" style={{ background: this.state.styleBackground }}>
         <div className={classes.todoWrapper}>
           <Switch>
-            <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><div className={this.menuCheckout}><SidebarContainer /></div><div className={this.todoCheckout}><HeaderContainer /><AboutUsContainer /></div></div>)} />
+            <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive ? classes.activeContainer : classes.container}><HeaderContainer /><AboutUsContainer /></div></div>)} />
             <Route path="/login" render={() => (<LoginContainer />)} />
             <Route exact path="/" render={() => (this.props.isAuth ?
-              <div className={classes.dFlexContainer}><div className={this.menuCheckout}><SidebarContainer /></div><div className={this.todoCheckout}><HeaderContainer /><Todo /></div></div> :
+              <div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive ? classes.activeContainer : classes.container}><HeaderContainer /><Todo /></div></div> :
               <LoginContainer />)} />
             {/* Any path! */}
             <Route path="*" render={() => (<div style={{ textAlign: 'center' }}>Error was occupied in a run time by occupation.</div>)} />

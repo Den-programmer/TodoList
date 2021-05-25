@@ -37,6 +37,11 @@ h3, h4, h5, h6, p {
   width:1170px;
   margin: 0 auto;
 }
+
+ul {
+  -webkit-padding-start: 0px;
+}
+
 .d-flex {
   display:flex;
 }

@@ -37,14 +37,6 @@ const Sidebar = (props) => {
         <div className={classes.root}>
             {props.isMenuActive && <div className={classes.sidebarWrapper}>
                 <div className={classes.sidebar}>
-                    {/* <div className={classes.authorizedUser}>
-                        <div className={classes.avatar}>
-                            <img src={} alt=""/>
-                        </div>
-                        <div className={classes.username}>
-                            <p>Username</p>
-                        </div>
-                    </div> */}
                     <ul className={classes.list}>
                         {menuItems}
                     </ul>
