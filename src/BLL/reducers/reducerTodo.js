@@ -1,4 +1,12 @@
 import firebase from 'firebase'
+import background1 from '../../images/backgrounds/background_1.png'
+import background2 from '../../images/backgrounds/background_2.png'
+import background3 from '../../images/backgrounds/background_3.png'
+import background4 from '../../images/backgrounds/background_4.png'
+import background5 from '../../images/backgrounds/background_5.png'
+import background6 from '../../images/backgrounds/background_6.png'
+import background7 from '../../images/backgrounds/background_7.png'
+import background8 from '../../images/backgrounds/background_8.png'
 
 const ADD_TASK = 'ADD-TASK'
 const DONE_TASK = 'DONE-TASK'
@@ -30,7 +38,56 @@ const todolist = {
     cashTasks: [],
     errorEditText: 'Untitled',
     isBackgroundModalActive: false,
-    backgrounds: [],
+    backgrounds: [
+        {
+            id: 1,
+            chosen: true,
+            src: background1,
+            styleBackground: 'linear-gradient(to right, #7CB9E8, #4F8CBB)'
+        },
+        {
+            id: 2,
+            chosen: false,
+            src: background2,
+            styleBackground: 'linear-gradient(to right, #222222, #000)'
+        },
+        {
+            id: 3,
+            chosen: false,
+            src: background3,
+            styleBackground: 'linear-gradient(to right, #FFF, #C7C7C7)'
+        },
+        {
+            id: 4,
+            chosen: false,
+            src: background4,
+            styleBackground: 'linear-gradient(to right, #00FF00, #008080)'
+        },
+        {
+            id: 5,
+            chosen: false,
+            src: background5,
+            styleBackground: 'linear-gradient(to right, #4E2458, #DB65F9)'
+        },
+        {
+            id: 6,
+            chosen: false,
+            src: background6,
+            styleBackground: 'linear-gradient(to right, #DDFF6F, #66DDAA)'
+        },
+        {
+            id: 7,
+            chosen: false,
+            src: background7,
+            styleBackground: 'linear-gradient(to right, #FF6C64, #D96200)'
+        },
+        {
+            id: 8,
+            chosen: false,
+            src: background8,
+            styleBackground: 'linear-gradient(to right, #0048BA, #008080)'
+        }
+    ],
     filter: {
         term: ''
     }
@@ -182,38 +239,65 @@ export const setBackgrounds = (backgrounds) => ({ type: SET_BACKGROUNDS, backgro
 
 /* Thunk Creators! */
 
-const taskDoc = "W5MlQOS5BzoKlaPOzKi1"
-const backgroundDoc = "hZ9dCLofpmoufrNqTyVs"
+const accountsDoc = "X5K05lvrWOEQSyw8myaV"
 
-export const requestTasks = () => async (dispatch) => {
+export const requestTasks = () => async (dispatch, getState) => {
     const db = firebase.firestore()
-    const data = await db.collection("tasksData").get()
+    const data = await db.collection("accounts").get()
     const dataArray = data.docs.map((doc) => doc.data())
-    const tasks = dataArray[0].tasks
-    dispatch(setTasks(tasks))
+    const emailCheckout = getState().auth.user.email
+    const accounts = dataArray[0].accountsData
+    accounts.forEach(item => {
+        if (item.email === emailCheckout) {
+            dispatch(setTasks(item.tasks))
+        }
+    })
 }
 
-export const requestBackgrounds = () => async (dispatch) => {
+export const requestBackgrounds = () => async (dispatch, getState) => {
     const db = firebase.firestore()
-    const data = await db.collection("backgroundsData").get()
+    const data = await db.collection("accounts").get()
     const dataArray = data.docs.map((doc) => doc.data())
-    const backgrounds = dataArray[0].backgrounds
-    dispatch(setBackgrounds(backgrounds))
+    const emailCheckout = getState().auth.user.email
+    const accounts = dataArray[0].accountsData
+    accounts.forEach(item => {
+        if (item.email === emailCheckout) {
+            debugger
+            dispatch(setBackgrounds(item.backgrounds))
+        }
+    })
 }
 
-export const updateBackground = (backgroundId) => (dispatch, getState) => {
+export const updateBackground = (backgroundId) => async (dispatch, getState) => {
     dispatch(setBackground(backgroundId))
-    const db = firebase.firestore()
     const backgrounds = getState().todolist.backgrounds
-    db.collection("backgroundsData").doc(backgroundDoc).update({ backgrounds })
+    const db = firebase.firestore()
+    const data = await db.collection("accounts").get()
+    const dataArray = data.docs.map((doc) => doc.data())
+    const accounts = dataArray[0].accountsData
+    const emailCheckout = getState().auth.user.email
+    const accountsData = accounts.map((item) => {
+        debugger
+        if (item.email === emailCheckout) return { ...item, backgrounds }
+        return item
+    })
+    db.collection("accounts").doc(accountsDoc).update({ accountsData })
 }
 
-const updateTasks = (dispatch, getState, func, func2) => {
+const updateTasks = async (dispatch, getState, func, func2) => {
+    const db = firebase.firestore()
+    const emailCheckout = getState().auth.user.email
+    const data = await db.collection("accounts").get()
+    const dataArray = data.docs.map((doc) => doc.data())
+    const accounts = dataArray[0].accountsData
     dispatch(func)
     func2 !== undefined && dispatch(func2)
-    const db = firebase.firestore()
     const tasks = getState().todolist.tasks
-    db.collection("tasksData").doc(taskDoc).update({ tasks })
+    const accountsData = accounts.map((item) => {
+        if (item.email === emailCheckout) return { ...item, tasks }
+        return item
+    })
+    db.collection("accounts").doc(accountsDoc).update({ accountsData })
 }
 
 export const updateAddedTask = (taskTitle) => (dispatch, getState) => {
@@ -226,7 +310,7 @@ export const updateDoneTask = (taskId) => (dispatch, getState) => {
 
 export const dlTask = (taskId) => (dispatch, getState) => {
     updateTasks(dispatch, getState, deleteTask(taskId))
-} 
+}
 
 export const updateEditedTask = (taskId, taskValue) => (dispatch, getState) => {
     updateTasks(dispatch, getState, finishEditTasks(taskId, taskValue), finishEditing())
