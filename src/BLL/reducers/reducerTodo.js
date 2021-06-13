@@ -1,12 +1,4 @@
 import firebase from 'firebase'
-import background1 from '../../images/backgrounds/background_1.png'
-import background2 from '../../images/backgrounds/background_2.png'
-import background3 from '../../images/backgrounds/background_3.png'
-import background4 from '../../images/backgrounds/background_4.png'
-import background5 from '../../images/backgrounds/background_5.png'
-import background6 from '../../images/backgrounds/background_6.png'
-import background7 from '../../images/backgrounds/background_7.png'
-import background8 from '../../images/backgrounds/background_8.png'
 
 const ADD_TASK = 'ADD-TASK'
 const DONE_TASK = 'DONE-TASK'
@@ -38,56 +30,7 @@ const todolist = {
     cashTasks: [],
     errorEditText: 'Untitled',
     isBackgroundModalActive: false,
-    backgrounds: [
-        {
-            id: 1,
-            chosen: true,
-            src: background1,
-            styleBackground: 'linear-gradient(to right, #7CB9E8, #4F8CBB)'
-        },
-        {
-            id: 2,
-            chosen: false,
-            src: background2,
-            styleBackground: 'linear-gradient(to right, #222222, #000)'
-        },
-        {
-            id: 3,
-            chosen: false,
-            src: background3,
-            styleBackground: 'linear-gradient(to right, #FFF, #C7C7C7)'
-        },
-        {
-            id: 4,
-            chosen: false,
-            src: background4,
-            styleBackground: 'linear-gradient(to right, #00FF00, #008080)'
-        },
-        {
-            id: 5,
-            chosen: false,
-            src: background5,
-            styleBackground: 'linear-gradient(to right, #4E2458, #DB65F9)'
-        },
-        {
-            id: 6,
-            chosen: false,
-            src: background6,
-            styleBackground: 'linear-gradient(to right, #DDFF6F, #66DDAA)'
-        },
-        {
-            id: 7,
-            chosen: false,
-            src: background7,
-            styleBackground: 'linear-gradient(to right, #FF6C64, #D96200)'
-        },
-        {
-            id: 8,
-            chosen: false,
-            src: background8,
-            styleBackground: 'linear-gradient(to right, #0048BA, #008080)'
-        }
-    ],
+    backgrounds: [],
     filter: {
         term: ''
     }
@@ -255,17 +198,25 @@ export const requestTasks = () => async (dispatch, getState) => {
 }
 
 export const requestBackgrounds = () => async (dispatch, getState) => {
+    const isAuth = getState().auth.isAuth
     const db = firebase.firestore()
-    const data = await db.collection("accounts").get()
-    const dataArray = data.docs.map((doc) => doc.data())
-    const emailCheckout = getState().auth.user.email
-    const accounts = dataArray[0].accountsData
-    accounts.forEach(item => {
-        if (item.email === emailCheckout) {
-            debugger
-            dispatch(setBackgrounds(item.backgrounds))
-        }
-    })
+    if (isAuth) {
+        const data = await db.collection("accounts").get()
+        const dataArray = data.docs.map((doc) => doc.data())
+        const emailCheckout = getState().auth.user.email
+        const accounts = dataArray[0].accountsData
+        accounts.forEach(item => {
+            if (item.email === emailCheckout) {
+                debugger
+                dispatch(setBackgrounds(item.backgrounds))
+            }
+        })
+    } else {
+        const data = await db.collection("backgroundsData").get()
+        const dataArray = data.docs.map((doc) => doc.data())
+        const backgrounds = dataArray[0].backgrounds
+        dispatch(setBackgrounds(backgrounds))
+    }
 }
 
 export const updateBackground = (backgroundId) => async (dispatch, getState) => {
@@ -277,7 +228,6 @@ export const updateBackground = (backgroundId) => async (dispatch, getState) => 
     const accounts = dataArray[0].accountsData
     const emailCheckout = getState().auth.user.email
     const accountsData = accounts.map((item) => {
-        debugger
         if (item.email === emailCheckout) return { ...item, backgrounds }
         return item
     })

@@ -24,11 +24,14 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.backgrounds !== this.props.backgrounds) this.setStateValue()
+    if(prevProps.backgrounds !== this.props.backgrounds || this.props.isAuth !== prevProps.isAuth) {
+      this.setStateValue()
+      this.props.requestBackgrounds() 
+    }
   }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
   render() {
     return (
-      <div className="App" style={{ background: this.state.styleBackground }}>
+      <div className="App" style={this.state.styleBackground !== '' ? { background: this.state.styleBackground } : {}}>
         <div className={classes.todoWrapper}>
           <Switch>
             <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive ? classes.activeContainer : classes.container}><HeaderContainer /><AboutUsContainer /></div></div>)} />
