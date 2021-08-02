@@ -207,7 +207,6 @@ export const requestBackgrounds = () => async (dispatch, getState) => {
         const accounts = dataArray[0].accountsData
         accounts.forEach(item => {
             if (item.email === emailCheckout) {
-                debugger
                 dispatch(setBackgrounds(item.backgrounds))
             }
         })

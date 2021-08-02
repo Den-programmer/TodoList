@@ -1,7 +1,7 @@
 /* Header! */
 
 .website {
-    width: 1170px;
+    min-width: 1170px;
     margin: 0 auto;
 }
 .website h2, .website p {
@@ -120,4 +120,63 @@
 }
 .checkMark {
     margin: 0 auto;
+}
+
+@media screen and (min-width: 1024px) {
+    .website {
+        min-width: 840px;
+        margin: 0 auto;
+    }
+    
+    /* Upload your mind! */
+    
+    .imgApp img {
+       width: 660px;
+    }
+    
+    /* Features! */
+    
+    .features__mainContent {
+        width: 720px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .features__title {
+        padding-bottom: 0;
+    }
+
+    .features__mainContent_text {
+        order: 1;
+        padding-bottom: 40px;
+    }
+    .menuImg {
+        order: 2;
+    }
+
+    .backgroundsImg img {
+        width: 660px;
+    }
+    
+    /* Additional features! */
+    
+    .editTasksImg img {
+        width: 660px;
+        height: 450px;
+    }
+    
+    /* Footer! */
+    
+    .footer {
+        display: flex;
+        padding: 100px 0px;
+        margin: 0 auto;
+        width: 700px;
+    }
+    .checkMark {
+        margin: 0 auto;
+    }
 }
