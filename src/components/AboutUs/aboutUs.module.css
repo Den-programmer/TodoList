@@ -4,7 +4,8 @@
     min-width: 1170px;
     margin: 0 auto;
 }
-.website h2, .website p {
+.website h2,
+.website p {
     color: #fff;
 }
 .website h2 {
@@ -24,16 +25,16 @@
 .title h1 {
     color: white;
     font-size: 4.5rem;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 .btn_startNow a {
-    background-color: #E44232;
-    color: #FFF;
+    background-color: #e44232;
+    color: #fff;
     text-decoration: none;
     border-radius: 4px;
     padding: 0.5rem 1.5rem;
     font-weight: bold;
-    font-family: 'Ubuntu', Arial, sans-serif;
+    font-family: "Ubuntu", Arial, sans-serif;
 }
 
 /* Upload your mind! */
@@ -63,7 +64,7 @@
     display: flex;
 }
 .features__mainContent > div {
-    margin:0 15px;
+    margin: 0 15px;
 }
 
 .backgroundsTitle {
@@ -84,7 +85,7 @@
     padding: 20px 0px;
 }
 
-.editTasksImg  {
+.editTasksImg {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -106,9 +107,9 @@
     padding: 20px 0px;
 }
 .contact__phoneNumber {
-    border-bottom: 1px solid #F50057;
+    border-bottom: 1px solid #f50057;
     width: min-content;
-    color: #F50057 !important;
+    color: #f50057 !important;
     margin: 0 auto;
 }
 
@@ -127,15 +128,15 @@
         min-width: 840px;
         margin: 0 auto;
     }
-    
+
     /* Upload your mind! */
-    
+
     .imgApp img {
-       width: 660px;
+        width: 660px;
     }
-    
+
     /* Features! */
-    
+
     .features__mainContent {
         width: 720px;
         margin: 0 auto;
@@ -160,16 +161,16 @@
     .backgroundsImg img {
         width: 660px;
     }
-    
+
     /* Additional features! */
-    
+
     .editTasksImg img {
         width: 660px;
         height: 450px;
     }
-    
+
     /* Footer! */
-    
+
     .footer {
         display: flex;
         padding: 100px 0px;
@@ -179,4 +180,127 @@
     .checkMark {
         margin: 0 auto;
     }
+}
+
+@media screen and (min-width: 768px) {
+    .website {
+        min-width: 500px;
+        margin: 0 auto;
+    }
+    .title h1 {
+        font-size: 1.6rem;
+    }
+    .btn_startNow a {
+        font-size: 0.9rem;
+    }
+
+    /* Upload your mind! */
+
+    .uploadUrMind h2 {
+        font-size: 1.8rem;
+    }
+    .uploadUrMind p {
+        font-size: 1rem;
+    }
+
+    .imgApp img {
+        width: 440px;
+    }
+
+    /* Features! */
+
+    .features__title {
+        padding-bottom: 0px;
+    }
+
+    .features__title h2 {
+        font-size: 1.6rem;
+    }
+
+    .features__mainContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .features__mainContent_text {
+        order: 1;
+        padding-bottom: 40px;
+    }
+    .features__mainContent_text p {
+        font-size: 1rem;
+        width: 440px;
+    }
+    .menuImg {
+        order: 2;
+    }
+
+    .menuImg img {
+        width: 440px;
+    }
+    .backgroundsTitle p {
+        font-size: 1.6rem;
+    }
+
+    .backgroundsImg img {
+        width: 440px;
+    }
+
+    /* Additional features! */
+
+    .editTask__title {
+        width: 440px;
+        margin: 0 auto;
+    }
+
+    .editTask__title p {
+        font-size: 1rem;
+    }
+
+    .editTasksImg img {
+        width: 440px;
+        height: 300px;
+    }
+
+    /* Contact! */
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contact h2 {
+        font-size: 1.6rem;
+    }
+
+    .contact__text {
+        font-size: 1rem !important;
+        width: 440px;
+    }
+
+    .contact__phoneNumber {
+        font-size: 1rem !important;
+    }
+
+    /* Footer! */
+
+    .footer {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .footer__mainContent p {
+        font-size: 1rem !important;
+    }
+    .footer__mainContent h2 {
+        font-size: 1.6rem;
+    }
+
+    .checkMark img {
+        height: 120px;
+    } 
 }

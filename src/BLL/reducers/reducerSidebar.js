@@ -4,6 +4,8 @@ const SET_MENU_STATUS = "SET_MENU_STATUS"
 const SET_MENUITEM_STATUS = "SET_MENUITEM_STATUS"
 const SET_MENUITEM_STATUS_HOVERED = 'SET_MENUITEM_STATUS_HOVERED'
 
+const SET_SIDEBAR_WIDTH = 'SET_SIDEBAR_WIDTH' 
+
 const sidebarState = {
     menu: [
         {
@@ -51,7 +53,8 @@ const sidebarState = {
             icon:  faImage
         },
     ],
-    isMenuActive: false
+    isMenuActive: false,
+    sidebarWidth: '240px'
 }
 
 const reducerSidebar = (state = sidebarState, action) => {
@@ -76,7 +79,12 @@ const reducerSidebar = (state = sidebarState, action) => {
                     if(item.id === action.itemId) return { ...item, isHovered: action.isHovered ? true : false }
                     return { ...item, isHovered: false }
                 })
-            }    
+            }  
+        case SET_SIDEBAR_WIDTH:
+            return {
+                ...state,
+                sidebarWidth: action.sidebarWidth
+            }      
         default:
             return state
     }
@@ -87,5 +95,7 @@ const reducerSidebar = (state = sidebarState, action) => {
 export const setMenuStatus = () => ({ type: SET_MENU_STATUS })
 export const setMenuItemStatus = (itemId) => ({ type: SET_MENUITEM_STATUS, itemId })
 export const setMenuItemStatusHovered = (itemId, isHovered) => ({ type: SET_MENUITEM_STATUS_HOVERED, itemId, isHovered })
+
+export const setSidebarWidth = (sidebarWidth) => ({ type: SET_SIDEBAR_WIDTH, sidebarWidth })
 
 export default reducerSidebar

@@ -28,16 +28,16 @@ class App extends React.Component {
       this.setStateValue()
       this.props.requestBackgrounds() 
     }
-  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
   render() {
     return (
       <div className="App" style={this.state.styleBackground !== '' ? { background: this.state.styleBackground } : {}}>
         <div className={classes.todoWrapper}>
           <Switch>
-            <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive ? classes.activeContainer : classes.container}><HeaderContainer /><AboutUsContainer /></div></div>)} />
+            <Route path="/aboutUS" render={() => (<div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive && this.props.sidebarWidth === '240px' ? classes.activeContainer : classes.container }><HeaderContainer /><AboutUsContainer /></div></div>)} />
             <Route path="/login" render={() => (<LoginContainer />)} />
             <Route exact path="/" render={() => (this.props.isAuth ?
-              <div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive ? classes.activeContainer : classes.container}><HeaderContainer /><Todo /></div></div> :
+              <div className={classes.dFlexContainer}><div className={classes.sidebarContainer}><SidebarContainer /></div><div className={this.props.isMenuActive && this.props.sidebarWidth === '240px' ? classes.activeContainer : classes.container }><HeaderContainer /><Todo /></div></div> :
               <LoginContainer />)} />
             {/* Any path! */}
             <Route path="*" render={() => (<div style={{ textAlign: 'center' }}>Error was occupied in a run time by occupation.</div>)} />
@@ -51,7 +51,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   backgrounds: state.todolist.backgrounds,
-  isMenuActive: state.sidebar.isMenuActive
+  isMenuActive: state.sidebar.isMenuActive,
+  sidebarWidth: state.sidebar.sidebarWidth
 })
 
 const AppContainer = connect(mapStateToProps, { requestBackgrounds })(App)
