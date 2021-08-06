@@ -70,6 +70,12 @@
     left: 45%;
 }
 
+@media screen and (min-width: 414px) {
+    .outer {
+        left: 42%;
+    }
+}
+
 .inner {
     width: inherit;
     text-align: center;

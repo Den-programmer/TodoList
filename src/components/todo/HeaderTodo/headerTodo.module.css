@@ -12,3 +12,15 @@
 .search .input:focus {
     border:1px solid #007BFF;
 }
+
+@media screen and (min-width: 414px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .search .input {
+        width:270px;
+        height: 20px;
+        border: 1px solid silver;
+    }
+}

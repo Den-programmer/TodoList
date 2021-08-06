@@ -304,3 +304,133 @@
         height: 120px;
     } 
 }
+
+@media screen and (min-width: 414px) {
+    .website {
+        min-width: 320px;
+        margin: 0 auto;
+    }
+    .title {
+        width: 320px;
+    }
+    .title h1 {
+        font-size: 1.6rem;
+    }
+    .btn_startNow a {
+        font-size: 0.9rem;
+    }
+
+    /* Upload your mind! */
+
+    .uploadUrMind {
+        width: 320px;
+    }
+
+    .uploadUrMind h2 {
+        font-size: 1.8rem;
+    }
+    .uploadUrMind p {
+        font-size: 1rem;
+    }
+
+    .imgApp img {
+        width: 320px;
+    }
+
+    /* Features! */
+
+    .features__title {
+        padding-bottom: 0px;
+    }
+
+    .features__title h2 {
+        font-size: 1.6rem;
+    }
+
+    .features__mainContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .features__mainContent_text {
+        order: 1;
+        padding-bottom: 40px;
+    }
+    .features__mainContent_text p {
+        font-size: 1rem;
+        width: 320px;
+    }
+    .menuImg {
+        order: 2;
+    }
+
+    .menuImg img {
+        width: 320px;
+    }
+    .backgroundsTitle p {
+        font-size: 1.6rem;
+    }
+
+    .backgroundsImg img {
+        width: 320px;
+    }
+
+    /* Additional features! */
+
+    .editTask__title {
+        width: 320px;
+        margin: 0 auto;
+    }
+
+    .editTask__title p {
+        font-size: 1rem;
+    }
+
+    .editTasksImg img {
+        width: 320px;
+        height: 200px;
+    }
+
+    /* Contact! */
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contact h2 {
+        font-size: 1.6rem;
+    }
+
+    .contact__text {
+        font-size: 1rem !important;
+        width: 320px;
+    }
+
+    .contact__phoneNumber {
+        font-size: 1rem !important;
+    }
+
+    /* Footer! */
+
+    .footer {
+        width: 320px;
+        margin: 0 auto;
+    }
+
+    .footer__mainContent p {
+        font-size: 1rem !important;
+    }
+    .footer__mainContent h2 {
+        font-size: 1.6rem;
+    }
+
+    .checkMark img {
+        height: 120px;
+    } 
+}

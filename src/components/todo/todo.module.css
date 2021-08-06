@@ -6,3 +6,9 @@
     border:1px solid #E3E3E3;
     border-radius: 3px;
 }
+
+@media screen and (min-width: 414px) {
+    .todo {
+        width: 320px;
+    }
+}
