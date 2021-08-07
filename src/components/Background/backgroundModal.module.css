@@ -57,7 +57,7 @@
     border-right-color: rgb(48, 133, 214);
 }
 
-@media screen and (max-width: 414px) {
+@media only screen and (max-device-width: 414px) {
     .modalContainer {
         width: 100%;
         min-height: 100vh;

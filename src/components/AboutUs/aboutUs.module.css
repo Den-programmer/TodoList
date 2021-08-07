@@ -123,7 +123,7 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 1024px) {
+@media only screen and (max-device-width: 1024px) {
     .website {
         min-width: 840px;
         margin: 0 auto;
@@ -182,7 +182,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (max-device-width: 768px) {
     .website {
         min-width: 500px;
         margin: 0 auto;
@@ -305,7 +305,7 @@
     } 
 }
 
-@media screen and (max-width: 414px) {
+@media only screen and (max-device-width: 414px) {
     .website {
         min-width: 320px;
         margin: 0 auto;

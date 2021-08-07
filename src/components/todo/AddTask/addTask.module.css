@@ -74,7 +74,7 @@
     opacity:1;
 }
 
-@media screen and (max-width: 414px) { 
+@media only screen and (max-device-width: 414px) { 
     .title h4 {
         display: none;
     }
