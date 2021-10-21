@@ -29,6 +29,20 @@
     color: #000;
 }
 
+@media only screen and (max-device-width: 414px) {
+    .filterItem {
+        width: 70px;
+        height: 35px; 
+        font-size: 0.8rem;
+    }
+    
+    .filterItemActive {
+        width: 70px;
+        height: 35px;
+        font-size: 0.8rem; 
+    }
+}
+
 
 .filterItem:hover {
     transition: all .1s ease;

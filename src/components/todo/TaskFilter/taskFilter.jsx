@@ -12,10 +12,10 @@ const TaskFilter = (props) => {
     
     return (
         <div className={classes.taskFilter}>
-            <div onClick={chooseAllTasks} style={{ backgroundColor: '#DD5044' }} className={props.isAllTasks ? classes.filterItemActive : classes.filterItem}>
+            <div onClick={chooseAllTasks} style={{ backgroundColor: '#FE2D42' }} className={props.isAllTasks ? classes.filterItemActive : classes.filterItem}>
                 All Tasks
             </div>
-            <div onClick={chooseActiveTasks} style={{ backgroundColor: '#149F5B' }} className={props.isActiveTasks ? classes.filterItemActive : classes.filterItem}>
+            <div onClick={chooseActiveTasks} style={{ backgroundColor: '#8DC80E' }} className={props.isActiveTasks ? classes.filterItemActive : classes.filterItem}>
                 Active Tasks
             </div>
             <div onClick={chooseDoneTasks} style={{ backgroundColor: '#FFCD41' }} className={props.isDoneTasks ? classes.filterItemActive : classes.filterItem}>
