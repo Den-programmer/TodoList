@@ -1,7 +1,7 @@
 /* Header! */
 
 .website {
-    min-width: 1170px;
+    width: 80%;
     margin: 0 auto;
 }
 .website h2,
@@ -15,7 +15,7 @@
     font-size: 25px;
 }
 .title {
-    width: 600px;
+    width: 90%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -42,12 +42,13 @@
 .uploadUrMind {
     text-align: center;
     margin: 0 auto;
-    width: 560px;
+    width: 85%;
     padding: 50px 0px;
 }
 .imgApp {
     display: flex;
     justify-content: center;
+    width: 90%;
     margin: 40px;
 }
 
@@ -62,6 +63,16 @@
 }
 .features__mainContent {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features__mainContent_text {
+    order: 1;
+    padding-bottom: 40px;
+}
+.menuImg {
+    order: 2;
 }
 .features__mainContent > div {
     margin: 0 15px;
@@ -80,7 +91,7 @@
 
 .editTask__title {
     text-align: center;
-    width: 560px;
+    width: 60%;
     margin: 0 auto;
     padding: 20px 0px;
 }
@@ -102,7 +113,7 @@
     text-align: center;
 }
 .contact__text {
-    width: 560px;
+    width: 60%;
     margin: 0 auto;
     padding: 20px 0px;
 }
@@ -118,28 +129,23 @@
 .footer {
     display: flex;
     padding: 100px 0px;
+    width: 80%;
+    margin: 0 auto;
 }
 .checkMark {
     margin: 0 auto;
 }
 
 @media only screen and (max-device-width: 1024px) {
-    .website {
-        min-width: 840px;
-        margin: 0 auto;
-    }
-
     /* Upload your mind! */
 
     .imgApp img {
-        width: 660px;
+        width: 600px;
     }
 
     /* Features! */
 
     .features__mainContent {
-        width: 720px;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -159,13 +165,13 @@
     }
 
     .backgroundsImg img {
-        width: 660px;
+        width: 600px;
     }
 
     /* Additional features! */
 
     .editTasksImg img {
-        width: 660px;
+        width: 600px;
         height: 450px;
     }
 
@@ -174,8 +180,6 @@
     .footer {
         display: flex;
         padding: 100px 0px;
-        margin: 0 auto;
-        width: 700px;
     }
     .checkMark {
         margin: 0 auto;
@@ -183,10 +187,6 @@
 }
 
 @media only screen and (max-device-width: 768px) {
-    .website {
-        min-width: 500px;
-        margin: 0 auto;
-    }
     .title h1 {
         font-size: 1.6rem;
     }
@@ -204,7 +204,7 @@
     }
 
     .imgApp img {
-        width: 440px;
+        width: 350px;
     }
 
     /* Features! */
@@ -230,37 +230,32 @@
     }
     .features__mainContent_text p {
         font-size: 1rem;
-        width: 440px;
+        width: 80%;
     }
     .menuImg {
         order: 2;
     }
 
     .menuImg img {
-        width: 440px;
+        width: 350px;
     }
     .backgroundsTitle p {
         font-size: 1.6rem;
     }
 
     .backgroundsImg img {
-        width: 440px;
+        width: 350px;
     }
 
     /* Additional features! */
-
-    .editTask__title {
-        width: 440px;
-        margin: 0 auto;
-    }
 
     .editTask__title p {
         font-size: 1rem;
     }
 
     .editTasksImg img {
-        width: 440px;
-        height: 300px;
+        width: 350px;
+        height: 250px;
     }
 
     /* Contact! */
@@ -279,7 +274,7 @@
 
     .contact__text {
         font-size: 1rem !important;
-        width: 440px;
+        width: 350px;
     }
 
     .contact__phoneNumber {
@@ -289,8 +284,8 @@
     /* Footer! */
 
     .footer {
-        width: 500px;
-        margin: 0 auto;
+        display: flex;
+        align-items: center;
     }
 
     .footer__mainContent p {
@@ -306,10 +301,6 @@
 }
 
 @media only screen and (max-device-width: 414px) {
-    .website {
-        min-width: 320px;
-        margin: 0 auto;
-    }
     .title {
         width: 320px;
     }
@@ -352,7 +343,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 370px;
+        width: 75%;
         text-align: center;
     }
 
@@ -423,6 +414,8 @@
     .footer {
         width: 320px;
         margin: 0 auto;
+        display: flex;
+        align-items: center;
     }
 
     .footer__mainContent p {
