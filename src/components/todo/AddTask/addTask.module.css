@@ -74,6 +74,22 @@
     opacity:1;
 }
 
+@media only screen and (max-device-width: 1000px) {
+    .title {
+        display: none;
+    }
+    .error {
+        font-size: 1.2rem;
+    }
+    .inputContainer {
+        width: 90%;
+    }
+    .input {
+        border: 1px solid silver;
+        width: 100%;
+    }
+}
+
 @media only screen and (max-device-width: 414px) { 
     .title h4 {
         display: none;

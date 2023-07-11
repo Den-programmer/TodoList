@@ -7,6 +7,12 @@
     border-radius: 3px;
 }
 
+@media only screen and (max-device-width: 1000px) {
+    .todo {
+        width: 70%;
+    }
+}
+
 @media only screen and (max-device-width: 414px) {
     .todo {
         width: 320px;

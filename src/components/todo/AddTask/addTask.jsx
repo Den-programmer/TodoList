@@ -51,7 +51,7 @@ const AddTask = (props) => {
                     <div className={classes.title}>
                         <h4>Your Task:</h4>
                     </div>
-                    <div>
+                    <div className={classes.inputContainer}>
                         <input onChange={onTaskTitleChange} value={taskTitle} title="Enter your task!"
                             className={classes.input}
                             placeholder=" What do you need to do? "
