@@ -33,7 +33,7 @@ const AboutUs = ({ isAuth }) => {
                     </p>
                 </div>
                 <div className={classes.imgApp}>
-                    <img src={todolistApp} alt="" />
+                    <img width="700" src={todolistApp} alt="" />
                 </div>
             </section>
             <section className={classes.features}>
